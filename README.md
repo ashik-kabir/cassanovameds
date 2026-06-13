@@ -5,7 +5,7 @@ Static peptide care landing page for Casanova Medicals.
 ## Public Site
 
 - CloudFront: https://d3po29uan0qf3r.cloudfront.net/
-- Domain target: `casanovamed.com`
+- Domain target: `casanovamed.com` is owned and DNS is configured, but Amazon Registrar still reports `clientHold`.
 - AWS Budget: `cassanovameds-monthly-20-usd` at `$20/month`
 
 ## Files
