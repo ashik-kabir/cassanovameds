@@ -315,6 +315,116 @@
       gap: 18px;
     }
 
+    .product-section {
+      margin-top: 54px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(220, 228, 231, 0.9);
+    }
+
+    .product-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .product-head h3 {
+      margin-bottom: 0;
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(29px, 3.2vw, 42px);
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    .product-head p {
+      width: min(430px, 100%);
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      display: flex;
+      min-height: 300px;
+      flex-direction: column;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(180deg, #ffffff, #f8fbfa);
+    }
+
+    .product-card.featured {
+      border-color: rgba(8, 122, 117, 0.32);
+      box-shadow: 0 14px 32px rgba(8, 122, 117, 0.12);
+    }
+
+    .product-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .product-card h4 {
+      margin: 0 0 9px;
+      color: var(--navy);
+      font-size: 21px;
+      line-height: 1.15;
+    }
+
+    .price {
+      margin: 0 0 14px;
+      color: var(--navy);
+      font-size: 28px;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    .price span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .product-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .product-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    .product-actions a {
+      color: var(--teal);
+      font-size: 14px;
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .product-note {
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
     .program-card,
     .step-card,
     .eligibility-card,
@@ -708,9 +818,15 @@
       }
 
       .program-grid,
+      .product-grid,
       .steps,
       .notes {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .product-head {
+        align-items: start;
+        flex-direction: column;
       }
     }
 
@@ -740,6 +856,7 @@
 
       .proof-row,
       .program-grid,
+      .product-grid,
       .steps,
       .notes,
       .field-grid,
@@ -771,6 +888,7 @@
       </a>
       <nav class="nav" aria-label="Primary">
         <a href="#programs">Programs</a>
+        <a href="#products">Products</a>
         <a href="#process">Process</a>
         <a href="#eligibility">Eligibility</a>
         <a class="btn" href="#intake">Start intake</a>
@@ -851,6 +969,121 @@
               <li>Ongoing monitoring plan</li>
             </ul>
           </article>
+        </div>
+
+        <div class="product-section" id="products">
+          <div class="product-head">
+            <h3>Products to start the care pathway.</h3>
+            <p>These offers package the review, navigation, and follow-up work. Medications, labs, and pharmacy costs are separate when clinically appropriate.</p>
+          </div>
+
+          <div class="product-grid">
+            <article class="product-card featured">
+              <div class="product-topline">
+                <span class="tag">Starter</span>
+              </div>
+              <h4>Peptide Eligibility Review</h4>
+              <div class="price">$149 <span>one time</span></div>
+              <p>Structured intake review for metabolic, recovery, or longevity goals with care-path recommendations and next-step routing.</p>
+              <ul class="program-list">
+                <li>Goal and medication screen</li>
+                <li>Clinician review queue</li>
+                <li>Written next-step summary</li>
+              </ul>
+              <div class="product-actions">
+                <a href="#intake">Request review</a>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-topline">
+                <span class="tag">Metabolic</span>
+              </div>
+              <h4>Metabolic Care Membership</h4>
+              <div class="price">$249 <span>/ month</span></div>
+              <p>Ongoing support for patients approved for GLP-focused or related metabolic care, with monthly check-ins and plan adjustments.</p>
+              <ul class="program-list">
+                <li>Monthly care check-in</li>
+                <li>Side effect and tolerance review</li>
+                <li>Dose-change coordination</li>
+              </ul>
+              <div class="product-actions">
+                <a href="#intake">Join waitlist</a>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-topline">
+                <span class="tag">Recovery</span>
+              </div>
+              <h4>Recovery Protocol Consult</h4>
+              <div class="price">$179 <span>one time</span></div>
+              <p>Clinician-guided review for recovery-oriented peptide interest, training load, injury history, and risk factors.</p>
+              <ul class="program-list">
+                <li>Recovery goal mapping</li>
+                <li>Contraindication review</li>
+                <li>Follow-up recommendation</li>
+              </ul>
+              <div class="product-actions">
+                <a href="#intake">Start consult</a>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-topline">
+                <span class="tag">Longevity</span>
+              </div>
+              <h4>Longevity Protocol Review</h4>
+              <div class="price">$179 <span>one time</span></div>
+              <p>Review for patients exploring healthy aging, sleep, body composition, and resilience through a supervised protocol.</p>
+              <ul class="program-list">
+                <li>Health goal intake</li>
+                <li>Lab and history discussion</li>
+                <li>Education-first plan notes</li>
+              </ul>
+              <div class="product-actions">
+                <a href="#intake">Request review</a>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-topline">
+                <span class="tag">Labs</span>
+              </div>
+              <h4>Lab and Records Review</h4>
+              <div class="price">$99 <span>add-on</span></div>
+              <p>Optional review of recent labs, vitals, medication list, and records to support a safer eligibility decision.</p>
+              <ul class="program-list">
+                <li>Recent lab summary</li>
+                <li>Medication reconciliation</li>
+                <li>Questions for clinician review</li>
+              </ul>
+              <div class="product-actions">
+                <a href="#intake">Add to intake</a>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-topline">
+                <span class="tag">Concierge</span>
+              </div>
+              <h4>Care Navigation</h4>
+              <div class="price">$399 <span>/ month</span></div>
+              <p>High-touch coordination for patients who want guided scheduling, pharmacy communication, reminders, and monthly support.</p>
+              <ul class="program-list">
+                <li>Priority care coordination</li>
+                <li>Monthly progress touchpoint</li>
+                <li>Pharmacy and refill navigation</li>
+              </ul>
+              <div class="product-actions">
+                <a href="#intake">Apply now</a>
+              </div>
+            </article>
+          </div>
+
+          <p class="product-note">
+            Pricing is for care coordination, review, and support services only. Prescriptions are not guaranteed. Medication, pharmacy, shipping, labs, and third-party clinical costs may be billed separately.
+          </p>
         </div>
       </div>
     </section>
@@ -959,6 +1192,19 @@
 
             <div class="field-grid">
               <label>
+                Product interest
+                <select name="product" required>
+                  <option value="">Select one</option>
+                  <option>Peptide Eligibility Review</option>
+                  <option>Metabolic Care Membership</option>
+                  <option>Recovery Protocol Consult</option>
+                  <option>Longevity Protocol Review</option>
+                  <option>Lab and Records Review</option>
+                  <option>Care Navigation</option>
+                  <option>Not sure yet</option>
+                </select>
+              </label>
+              <label>
                 Primary goal
                 <select name="goal" required>
                   <option value="">Select one</option>
@@ -968,11 +1214,12 @@
                   <option>Not sure yet</option>
                 </select>
               </label>
-              <label>
-                State
-                <input name="state" autocomplete="address-level1" placeholder="e.g. NY" required />
-              </label>
             </div>
+
+            <label>
+              State
+              <input name="state" autocomplete="address-level1" placeholder="e.g. NY" required />
+            </label>
 
             <label>
               What should the clinician know first?
