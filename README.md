@@ -1,6 +1,6 @@
 # Cassanova Meds
 
-Static site for the Casanova Medicals Protocol Program.
+Static site for the Casanova Medicals Protocol Program v1: free intake, clinician review, approved Protocol A/B enrollment at `$249/month`, and §07A outcomes tracking from day one.
 
 ## Public Site
 

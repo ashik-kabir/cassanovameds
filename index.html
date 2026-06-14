@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Casanova Medicals | Protocol Program</title>
-  <meta name="description" content="Clinician-reviewed AM/PM supplement protocol with free eligibility screening, review routing, and monthly outcomes tracking." />
+  <meta name="description" content="Clinician-reviewed AM/PM supplement protocol with free eligibility screening, review routing, and §07A outcomes tracking." />
   <style>
     :root {
       color-scheme: light;
@@ -902,7 +902,7 @@
           <p class="eyebrow">Clinician-reviewed supplement protocol</p>
           <h1>Free eligibility check before any protocol enrollment.</h1>
           <p class="hero-lede">
-            Casanova Medicals now starts with a no-cost review request. If a clinician signs off, approved patients can enroll in the Casanova Protocol Program: an AM/PM OTC supplement subscription with monthly check-ins and outcomes tracking.
+            Casanova Medicals now starts with a no-cost review request. If a clinician signs off, approved patients can enroll in the Casanova Protocol Program: an AM/PM OTC supplement subscription with monthly check-ins and §07A outcomes tracking from day one.
           </p>
           <div class="hero-actions">
             <a class="btn" href="#intake">Start free check</a>
@@ -933,7 +933,7 @@
         <div class="section-head">
           <h2>The Casanova Protocol Program is the first product layer.</h2>
           <p>
-            CPP is the near-term product layer: a clinician-reviewed AM/PM OTC protocol subscription, fulfilled directly, with review routing and monthly outcome check-ins from day one.
+            CPP is the v1 product layer: free intake, clinician review, approved Protocol A/B enrollment at $249/month, and §07A outcomes tracking from day one.
           </p>
         </div>
 
@@ -967,7 +967,7 @@
             <ul class="program-list">
               <li>Protocol A + Protocol B combined</li>
               <li>$249/month after clinician approval</li>
-              <li>Monthly adherence and outcome check-ins</li>
+              <li>§07A adherence and outcome tracking</li>
             </ul>
           </article>
         </div>
@@ -987,7 +987,7 @@
               <div class="price">$0 <span>before review</span></div>
               <p>A 3-minute intake that routes each request into low, standard, or priority review. The score supports operations; it is not a medical decision.</p>
               <ul class="program-list">
-                <li>Energy, sleep, GLP-1 history, and goal screen</li>
+                <li>Energy, sleep, current medication, and goal screen</li>
                 <li>24-48 hour review expectation</li>
                 <li>No product purchase before clinician sign-off</li>
               </ul>
@@ -1006,7 +1006,7 @@
               <ul class="program-list">
                 <li>AM sachet protocol</li>
                 <li>Adherence and energy tracking</li>
-                <li>Outcome fields captured from month one</li>
+                <li>§07A outcome fields captured from month one</li>
               </ul>
               <div class="product-actions">
                 <a href="#intake">Check fit</a>
@@ -1040,7 +1040,7 @@
               <ul class="program-list">
                 <li>Protocol A + B assignment</li>
                 <li>7-day onboarding sequence</li>
-                <li>Monthly outcomes dataset</li>
+                <li>§07A outcomes dataset</li>
               </ul>
               <div class="product-actions">
                 <a href="#intake">Check fit</a>
@@ -1068,13 +1068,13 @@
               <div class="product-topline">
                 <span class="tag">Future</span>
               </div>
-              <h4>Prescription Care Later</h4>
+              <h4>Phase 3 Expansion</h4>
               <div class="price">Deferred <span>until ready</span></div>
-              <p>Peptide and GLP-1 care can be introduced later after prescriber and pharmacy infrastructure exists.</p>
+              <p>Prescription-path care stays out of the public offer until CPP proves acquisition, retention, economics, and real outcomes data.</p>
               <ul class="program-list">
-                <li>Prescriber network required</li>
-                <li>Pharmacy relationship required</li>
-                <li>Bundled pricing to be re-tested</li>
+                <li>Existing patient base first</li>
+                <li>Clinical relationship first</li>
+                <li>Partner conversations after traction</li>
               </ul>
               <div class="product-actions">
                 <a href="#intake">Start with CPP</a>
@@ -1102,7 +1102,7 @@
           <article class="step-card">
             <div class="step-num">01</div>
             <h3>Free intake</h3>
-            <p>Energy, sleep, GLP-1 history, goal, and safety notes generate an operational review priority.</p>
+            <p>Energy, sleep, medication history, goal, and safety notes generate an operational review priority.</p>
           </article>
           <article class="step-card">
             <div class="step-num">02</div>
@@ -1117,7 +1117,7 @@
           <article class="step-card">
             <div class="step-num">04</div>
             <h3>Monthly check-in</h3>
-            <p>Approved subscriptions collect adherence, energy, sleep, and goal progress from the first month.</p>
+            <p>Approved subscriptions collect §07A adherence, energy, sleep, and goal-progress data from the first month.</p>
           </article>
         </div>
       </div>
@@ -1128,7 +1128,7 @@
         <div class="section-head">
           <h2>Responsible access without pretending to prescribe.</h2>
           <p>
-            CPP is designed as a clinician-reviewed supplement program. Prescription-based peptide or GLP-1 care stays deferred until the infrastructure is actually in place.
+            CPP is designed as a clinician-reviewed supplement program. Prescription-path expansion stays deferred until the v1 program has real patients, retention, economics, and outcomes data.
           </p>
         </div>
 
@@ -1214,12 +1214,12 @@
 
             <div class="field-grid">
               <label>
-                GLP-1 medication history
-                <select name="glpHistory" data-score required>
+                Medication history relevant to review
+                <select name="medHistory" data-score required>
                   <option value="">Select one</option>
-                  <option value="0">No</option>
-                  <option value="3">Yes, within 6 months</option>
-                  <option value="2">Yes, more than 6 months ago</option>
+                  <option value="0">No current medications</option>
+                  <option value="3">Currently taking medication</option>
+                  <option value="2">Stopped a relevant medication recently</option>
                 </select>
               </label>
               <label>
@@ -1256,7 +1256,7 @@
         <div class="notes">
           <article class="note-card">
             <h3>Is CPP a prescription service?</h3>
-            <p>No. CPP is positioned as a clinician-reviewed OTC protocol program. Prescription peptide and GLP-1 care stays deferred until prescriber and pharmacy infrastructure exists.</p>
+            <p>No. CPP is positioned as a clinician-reviewed OTC protocol program. Prescription-path expansion is Phase 3, after CPP proves demand, retention, economics, and outcomes.</p>
           </article>
           <article class="note-card">
             <h3>Does the free check cost anything?</h3>
@@ -1285,7 +1285,7 @@
     </div>
     <div class="footer-inner">
       <p class="legal">
-        Casanova Medicals is an informational and care coordination experience. It does not provide emergency care, diagnose, prescribe, or replace a qualified healthcare professional. CPP enrollment is not guaranteed and depends on clinician review. The Casanova Protocol is an OTC supplement program; COA, stability, labeling, and fulfillment safeguards must be completed before shipment under the Casanova name.
+        Casanova Medicals is an informational and care coordination experience. It does not provide emergency care, diagnose, prescribe, or replace a qualified healthcare professional. CPP enrollment is not guaranteed and depends on clinician review. The Casanova Protocol is an OTC supplement program with §07A outcomes tracking; COA, stability, labeling, and fulfillment safeguards must be completed before shipment under the Casanova name.
       </p>
     </div>
   </footer>
