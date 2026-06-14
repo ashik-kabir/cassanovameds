@@ -1,17 +1,18 @@
 # Cassanova Meds
 
-Static peptide care landing page for Casanova Medicals.
+Static site for the Casanova Medicals Protocol Program.
 
 ## Public Site
 
 - CloudFront: https://d3po29uan0qf3r.cloudfront.net/
-- Domain target: `casanovamed.com` is owned and DNS is configured, but Amazon Registrar still reports `clientHold`.
+- Primary domain: https://www.casanovamed.com/
+- Apex domain: https://casanovamed.com/
 - AWS Budget: `cassanovameds-monthly-20-usd` at `$20/month`
 
 ## Files
 
 - `index.html` - deploy-ready HTML/CSS/JavaScript site.
-- `assets/peptide-hero.png` - generated hero image used by the landing page.
+- `assets/protocol-hero.png` - generated hero image used by the landing page.
 
 ## Local Preview
 
