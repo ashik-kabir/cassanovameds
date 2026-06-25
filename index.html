@@ -3,163 +3,215 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Casanova Medicals | Protocol Program</title>
-  <meta name="description" content="Clinician-reviewed AM/PM supplement protocol with free eligibility screening, review routing, and §07A outcomes tracking." />
+  <title>Casanova Medicals | Medical Navigation · Southeast Asia</title>
+  <meta name="description" content="Clinician-reviewed medical navigation for Americans 55+ who want world-class care at Bumrungrad, RAKxa, and partner institutions across Thailand, Vietnam, and Malaysia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      color-scheme: light;
-      --ink: #102033;
-      --ink-soft: #405168;
-      --muted: #687587;
-      --line: #dce4e7;
-      --paper: #fbfcfb;
-      --panel: #ffffff;
-      --wash: #eef6f3;
-      --navy: #102640;
-      --teal: #087a75;
-      --teal-2: #0f9f8e;
-      --sage: #a9c9b8;
-      --gold: #c99f52;
-      --rose: #f7ece7;
-      --danger: #9f3d36;
-      --shadow: 0 18px 50px rgba(16, 32, 51, 0.11);
+      --navy:    #1B2B3A;
+      --paper:   #F7F4EE;
+      --sage:    #7A9B7E;
+      --amber:   #C2762E;
+      --ink:     #2C3E50;
+      --ink-soft:#4A5568;
+      --muted:   #718096;
+      --line:    #E2DDD7;
+      --panel:   #FFFFFF;
+      --wash:    #EEF5EF;
+      --danger:  #9B3535;
+      --danger-bg:#FDF0F0;
+      --shadow-sm: 0 2px 8px rgba(27,43,58,0.08);
+      --shadow:    0 12px 40px rgba(27,43,58,0.12);
+      --shadow-lg: 0 24px 60px rgba(27,43,58,0.16);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
       color: var(--ink);
       background: var(--paper);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    a {
-      color: inherit;
+    h1, h2, h3, h4, h5 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 600;
+      line-height: 1.08;
+      margin-top: 0;
+      color: var(--navy);
     }
 
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
+    p { margin-top: 0; }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; }
 
-    .site-shell {
-      min-height: 100vh;
-      background:
-        linear-gradient(180deg, rgba(238, 246, 243, 0.74), rgba(251, 252, 251, 0) 520px),
-        var(--paper);
-    }
+    .mono { font-family: 'IBM Plex Mono', monospace; }
 
+    /* ── Topbar ── */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
       min-height: 68px;
-      padding: 0 42px;
-      border-bottom: 1px solid rgba(220, 228, 231, 0.8);
-      background: rgba(251, 252, 251, 0.9);
+      padding: 0 48px;
+      background: rgba(247, 244, 238, 0.92);
       backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(226, 221, 215, 0.8);
     }
 
     .brand {
       display: inline-flex;
       flex-direction: column;
-      gap: 1px;
+      gap: 2px;
       text-decoration: none;
-      letter-spacing: 0;
     }
 
     .brand strong {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 21px;
-      line-height: 1;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
       color: var(--navy);
+      line-height: 1;
     }
 
-    .brand span {
-      font-size: 11px;
-      font-weight: 700;
+    .brand em {
+      font-style: normal;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--teal);
-      letter-spacing: 1.6px;
+      color: var(--sage);
+      font-family: 'IBM Plex Mono', monospace;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 28px;
     }
 
     .nav a {
       color: var(--ink-soft);
       font-size: 14px;
-      font-weight: 650;
+      font-weight: 500;
       text-decoration: none;
+      transition: color 0.18s;
     }
 
-    .nav a:hover {
-      color: var(--teal);
-    }
+    .nav a:hover { color: var(--navy); }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-height: 44px;
-      padding: 0 18px;
-      border: 1px solid transparent;
-      border-radius: 7px;
-      color: #ffffff;
-      background: var(--teal);
-      font-weight: 750;
-      text-decoration: none;
+      padding: 0 22px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
       cursor: pointer;
-      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+      text-decoration: none;
+      transition: all 0.2s;
     }
 
-    .btn:hover {
-      background: var(--teal-2);
-      transform: translateY(-1px);
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
     }
 
-    .btn.secondary {
+    .btn-primary:hover { background: #253c4e; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
       color: var(--navy);
-      background: rgba(255, 255, 255, 0.78);
-      border-color: var(--line);
+      border: 1.5px solid var(--navy);
     }
 
-    .btn.secondary:hover {
-      border-color: var(--sage);
-      background: #ffffff;
+    .btn-outline:hover { background: var(--navy); color: #fff; }
+
+    .btn-sage {
+      background: var(--sage);
+      color: #fff;
     }
 
+    .btn-sage:hover { background: #6a8a6e; transform: translateY(-1px); }
+
+    .btn-amber {
+      background: var(--amber);
+      color: #fff;
+    }
+
+    .btn-amber:hover { background: #b06a27; transform: translateY(-1px); }
+
+    /* ── Layout ── */
+    .inner {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+    }
+
+    .band {
+      padding: 96px 48px;
+    }
+
+    .band-sm { padding: 64px 48px; }
+    .band-xs { padding: 40px 48px; }
+
+    .band-white { background: #fff; }
+    .band-navy  { background: var(--navy); color: #fff; }
+    .band-wash  { background: var(--wash); }
+    .band-paper { background: var(--paper); }
+
+    .band-white h2,
+    .band-wash h2  { color: var(--navy); }
+    .band-navy h2  { color: #fff; }
+    .band-navy h3  { color: #fff; }
+    .band-navy p   { color: rgba(255,255,255,0.75); }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1.5px;
+      background: var(--amber);
+    }
+
+    /* ── Hero ── */
     .hero {
       position: relative;
-      min-height: calc(100vh - 68px);
-      display: grid;
+      min-height: 92vh;
+      display: flex;
       align-items: center;
-      padding: 72px 42px 96px;
+      padding: 80px 48px;
       overflow: hidden;
     }
 
-    .hero::before {
-      content: "";
+    .hero-bg {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(251, 252, 251, 0.98) 0%, rgba(251, 252, 251, 0.9) 38%, rgba(251, 252, 251, 0.24) 67%, rgba(251, 252, 251, 0) 100%),
+        linear-gradient(105deg, rgba(247,244,238,0.98) 0%, rgba(247,244,238,0.92) 42%, rgba(247,244,238,0.55) 68%, rgba(247,244,238,0.12) 100%),
         url("assets/protocol-hero.png") center right / cover no-repeat;
       z-index: 0;
     }
@@ -167,1155 +219,1782 @@
     .hero-inner {
       position: relative;
       z-index: 1;
-      width: min(1160px, 100%);
+      width: min(1200px, 100%);
       margin: 0 auto;
     }
 
-    .hero-copy {
-      width: min(650px, 100%);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin: 0 0 22px;
-      color: var(--teal);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 30px;
-      height: 2px;
-      background: var(--gold);
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
+    .hero-copy { max-width: 680px; }
 
     h1 {
-      max-width: 760px;
-      margin-bottom: 22px;
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--navy);
-      font-size: clamp(45px, 6.2vw, 86px);
-      line-height: 0.98;
-      font-weight: 600;
-      letter-spacing: 0;
+      font-size: clamp(44px, 6vw, 82px);
+      margin-bottom: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
 
     .hero-lede {
-      max-width: 590px;
-      margin-bottom: 32px;
+      font-size: 20px;
+      line-height: 1.7;
       color: var(--ink-soft);
-      font-size: 19px;
-      line-height: 1.65;
+      margin-bottom: 36px;
+      max-width: 580px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 34px;
+      margin-bottom: 48px;
     }
 
-    .proof-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(140px, 1fr));
-      gap: 12px;
-      width: min(610px, 100%);
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
     }
 
-    .proof {
-      padding: 16px;
-      border: 1px solid rgba(220, 228, 231, 0.9);
-      border-radius: 7px;
-      background: rgba(255, 255, 255, 0.78);
-    }
-
-    .proof strong {
-      display: block;
-      color: var(--navy);
-      font-size: 15px;
-      margin-bottom: 4px;
-    }
-
-    .proof span {
-      color: var(--muted);
+    .trust-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.75);
       font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      margin-right: -1px;
     }
 
-    main {
-      background: var(--paper);
+    .trust-pill:first-child { border-radius: 6px 0 0 6px; }
+    .trust-pill:last-child  { border-radius: 0 6px 6px 0; margin-right: 0; }
+
+    .trust-pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+      flex-shrink: 0;
     }
 
-    .band {
-      padding: 84px 42px;
-      border-top: 1px solid rgba(220, 228, 231, 0.75);
-    }
-
-    .band.white {
-      background: #ffffff;
-    }
-
-    .band.deep {
+    /* ── Slogan ── */
+    .slogan-band {
       background: var(--navy);
-      color: #ffffff;
+      padding: 28px 48px;
     }
 
-    .inner {
-      width: min(1160px, 100%);
+    .slogan-inner {
+      width: min(1200px, 100%);
       margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
     }
 
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, 0.86fr) minmax(280px, 0.64fr);
-      gap: 54px;
-      align-items: end;
-      margin-bottom: 42px;
+    .slogan {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
     }
 
-    .section-head h2 {
-      margin-bottom: 0;
-      color: var(--navy);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(34px, 4.2vw, 58px);
-      line-height: 1.03;
+    .slogan strong {
+      color: rgba(255,255,255,0.9);
       font-weight: 600;
     }
 
-    .section-head p {
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .deep .section-head h2,
-    .deep .section-head p {
-      color: #ffffff;
-    }
-
-    .deep .section-head p {
-      opacity: 0.72;
-    }
-
+    /* ── Programs ── */
     .program-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .product-section {
-      margin-top: 54px;
-      padding-top: 48px;
-      border-top: 1px solid rgba(220, 228, 231, 0.9);
-    }
-
-    .product-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 24px;
-    }
-
-    .product-head h3 {
-      margin-bottom: 0;
-      color: var(--navy);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(29px, 3.2vw, 42px);
-      line-height: 1.05;
-      font-weight: 600;
-    }
-
-    .product-head p {
-      width: min(430px, 100%);
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .product-card {
-      display: flex;
-      min-height: 300px;
-      flex-direction: column;
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: linear-gradient(180deg, #ffffff, #f8fbfa);
-    }
-
-    .product-card.featured {
-      border-color: rgba(8, 122, 117, 0.32);
-      box-shadow: 0 14px 32px rgba(8, 122, 117, 0.12);
-    }
-
-    .product-topline {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .product-card h4 {
-      margin: 0 0 9px;
-      color: var(--navy);
-      font-size: 21px;
-      line-height: 1.15;
-    }
-
-    .price {
-      margin: 0 0 14px;
-      color: var(--navy);
-      font-size: 28px;
-      font-weight: 850;
-      letter-spacing: 0;
-    }
-
-    .price span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .product-card p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
-    .product-actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: auto;
-      padding-top: 18px;
-    }
-
-    .product-actions a {
-      color: var(--teal);
-      font-size: 14px;
-      font-weight: 850;
-      text-decoration: none;
-    }
-
-    .product-note {
-      margin: 20px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.65;
-    }
-
-    .program-card,
-    .step-card,
-    .eligibility-card,
-    .note-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
+      gap: 20px;
+      margin-top: 48px;
     }
 
     .program-card {
       display: flex;
-      min-height: 310px;
       flex-direction: column;
-      padding: 26px;
-      box-shadow: 0 8px 24px rgba(16, 32, 51, 0.05);
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s, transform 0.2s;
     }
 
-    .tag {
-      align-self: flex-start;
-      margin-bottom: 18px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      color: var(--teal);
-      background: rgba(8, 122, 117, 0.09);
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: 1px;
+    .program-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .program-card.featured {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 2px var(--sage), var(--shadow);
+    }
+
+    .program-tier {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
       text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 12px;
     }
 
     .program-card h3 {
-      margin-bottom: 10px;
-      color: var(--navy);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 28px;
-      line-height: 1.08;
-      font-weight: 600;
+      font-size: 26px;
+      margin-bottom: 6px;
     }
 
-    .program-card p {
+    .program-duration {
+      font-size: 13px;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.65;
+      margin-bottom: 20px;
     }
 
-    .program-list {
-      display: grid;
-      gap: 9px;
-      padding: 0;
-      margin: auto 0 0;
+    .program-fee {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .program-fee-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .program-includes {
       list-style: none;
+      padding: 0;
+      margin: 0 0 auto;
+      display: grid;
+      gap: 10px;
     }
 
-    .program-list li {
-      position: relative;
-      padding-left: 18px;
-      color: var(--ink-soft);
+    .program-includes li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
       font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.5;
     }
 
-    .program-list li::before {
-      content: "";
-      position: absolute;
-      top: 9px;
-      left: 0;
-      width: 7px;
-      height: 7px;
+    .program-includes li::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      min-width: 6px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--amber);
+      margin-top: 7px;
     }
 
-    .steps {
+    .program-cta {
+      margin-top: 28px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .program-allin {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* ── How it works ── */
+    .steps-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
+      margin-top: 48px;
     }
 
-    .step-card {
-      padding: 24px;
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(255, 255, 255, 0.15);
+    .step {
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
     }
 
     .step-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--sage);
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 0;
+    }
+
+    /* ── CPP section ── */
+    .cpp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .cpp-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .cpp-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: rgba(122,155,126,0.12);
+      color: var(--sage);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .cpp-card h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .cpp-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .cpp-ingredient-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 7px;
+    }
+
+    .cpp-ingredient-list li {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .cpp-ingredient-list li::before {
+      content: '—';
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    /* ── Partners ── */
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .partner-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .partner-country {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .partner-card h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .partner-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    /* ── Origin ── */
+    .origin-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 44px;
+    }
+
+    .origin-card {
+      padding: 28px;
+      border-top: 3px solid var(--amber);
+      background: #fff;
+      border-radius: 0 0 8px 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .origin-card h4 {
+      font-size: 19px;
+      margin-bottom: 14px;
+    }
+
+    .origin-card p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    /* ── Emergency ── */
+    .emergency-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 36px;
+      align-items: start;
+    }
+
+    .emergency-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .emergency-steps li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .emergency-step-num {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 50%;
+      background: var(--sage);
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 42px;
-      height: 42px;
-      margin-bottom: 32px;
-      border-radius: 8px;
-      color: #ffffff;
-      background: rgba(15, 159, 142, 0.36);
-      font-weight: 850;
     }
 
-    .step-card h3 {
-      margin-bottom: 10px;
-      color: #ffffff;
-      font-size: 17px;
+    .emergency-steps li > div {
+      padding-top: 4px;
     }
 
-    .step-card p {
-      margin-bottom: 0;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
-    .eligibility-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .eligibility-card {
-      padding: 28px;
-    }
-
-    .eligibility-card h3 {
+    .emergency-steps li h5 {
+      font-size: 15px;
       color: var(--navy);
-      font-size: 22px;
+      margin-bottom: 3px;
+    }
+
+    .emergency-steps li p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .emergency-panel {
+      padding: 28px;
+      background: var(--navy);
+      border-radius: 10px;
+      color: #fff;
+    }
+
+    .emergency-panel h4 {
+      color: #fff;
+      font-size: 20px;
       margin-bottom: 16px;
     }
 
-    .checklist {
-      display: grid;
-      gap: 12px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .checklist li {
-      display: grid;
-      grid-template-columns: 22px minmax(0, 1fr);
-      gap: 10px;
-      color: var(--ink-soft);
-      font-size: 15px;
-    }
-
-    .check {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      color: #ffffff;
-      background: var(--teal);
-      font-size: 13px;
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    .warning {
-      padding: 18px;
-      margin-top: 20px;
-      border: 1px solid rgba(159, 61, 54, 0.22);
-      border-radius: 8px;
-      color: var(--danger);
-      background: var(--rose);
+    .emergency-panel p {
       font-size: 14px;
-      line-height: 1.6;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 16px;
     }
 
-    .intake-panel {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 34px;
-      padding: 34px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #ffffff;
-      box-shadow: var(--shadow);
-    }
-
-    .intake-copy h2 {
-      margin-bottom: 14px;
-      color: var(--navy);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(33px, 4vw, 52px);
-      line-height: 1.04;
+    .emergency-contact {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--sage);
       font-weight: 600;
     }
 
-    .intake-copy p {
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .mini-metrics {
+    /* ── Intake ── */
+    .intake-wrap {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 28px;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 48px;
+      align-items: start;
     }
 
-    .metric {
-      padding: 16px;
+    .intake-copy h2 {
+      font-size: clamp(34px, 4.5vw, 54px);
+      margin-bottom: 16px;
+    }
+
+    .intake-copy p {
+      font-size: 16px;
+      color: var(--ink-soft);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .metrics-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .metric-card {
+      padding: 18px;
       border-radius: 8px;
       background: var(--wash);
     }
 
-    .metric strong {
+    .metric-card strong {
       display: block;
-      margin-bottom: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 26px;
+      font-weight: 600;
       color: var(--navy);
-      font-size: 22px;
+      margin-bottom: 4px;
     }
 
-    .metric span {
-      color: var(--muted);
+    .metric-card span {
       font-size: 13px;
+      color: var(--muted);
     }
 
-    form {
+    .intake-trust {
       display: grid;
-      gap: 14px;
+      gap: 8px;
     }
 
-    .field-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+    .intake-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--ink-soft);
     }
+
+    .intake-trust-item .check {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border-radius: 50%;
+      background: var(--sage);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Form ── */
+    .intake-form-wrap {
+      padding: 36px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    form { display: grid; gap: 16px; }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
     label {
       display: grid;
       gap: 6px;
-      color: var(--ink-soft);
       font-size: 13px;
-      font-weight: 750;
+      font-weight: 600;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
     }
 
-    input,
-    select,
-    textarea {
+    input[type="text"], input[type="email"], input[type="tel"],
+    select, textarea {
       width: 100%;
-      min-height: 46px;
-      padding: 12px 13px;
-      border: 1px solid var(--line);
-      border-radius: 7px;
+      padding: 11px 13px;
+      border: 1.5px solid var(--line);
+      border-radius: 6px;
       color: var(--ink);
-      background: #ffffff;
+      background: #fff;
       outline: none;
+      font-size: 15px;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      min-height: 46px;
     }
 
-    textarea {
-      min-height: 96px;
-      resize: vertical;
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(122,155,126,0.15);
     }
 
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--teal);
-      box-shadow: 0 0 0 3px rgba(8, 122, 117, 0.12);
-    }
+    textarea { min-height: 100px; resize: vertical; }
 
-    .consent {
+    .consent-row {
       display: grid;
-      grid-template-columns: 20px minmax(0, 1fr);
+      grid-template-columns: 20px 1fr;
       gap: 10px;
       align-items: start;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-      font-weight: 500;
     }
 
-    .consent input {
-      min-height: 0;
+    .consent-row input {
       width: 18px;
       height: 18px;
+      min-height: 0;
       margin-top: 2px;
-      accent-color: var(--teal);
+      accent-color: var(--sage);
     }
 
-    .form-status {
-      display: none;
-      padding: 13px 14px;
-      border-radius: 7px;
-      color: #075e54;
-      background: rgba(8, 122, 117, 0.1);
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .form-status.visible {
-      display: block;
-    }
-
-    .notes {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .note-card {
-      padding: 22px;
-    }
-
-    .note-card h3 {
-      margin-bottom: 8px;
-      color: var(--navy);
-      font-size: 17px;
-    }
-
-    .note-card p {
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    footer {
-      padding: 32px 42px;
-      color: rgba(255, 255, 255, 0.68);
-      background: #071323;
-    }
-
-    .footer-inner {
-      width: min(1160px, 100%);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .footer-inner strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #ffffff;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 20px;
-      font-weight: 600;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 18px;
+    .consent-row span {
       font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
-    .legal {
-      max-width: 980px;
-      margin-top: 20px;
-      color: rgba(255, 255, 255, 0.58);
-      font-size: 12px;
+    .form-score-display {
+      display: none;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid;
+    }
+
+    .form-score-display.visible { display: block; }
+    .form-score-display.priority {
+      background: rgba(122,155,126,0.1);
+      border-color: rgba(122,155,126,0.3);
+      color: #2a6b3e;
+    }
+    .form-score-display.standard {
+      background: rgba(194,118,46,0.08);
+      border-color: rgba(194,118,46,0.25);
+      color: #8a5010;
+    }
+    .form-score-display.general {
+      background: rgba(27,43,58,0.06);
+      border-color: rgba(27,43,58,0.15);
+      color: var(--navy);
+    }
+
+    .score-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .score-message {
+      font-size: 14px;
       line-height: 1.65;
     }
 
-    @media (max-width: 960px) {
-      .topbar {
-        padding: 0 22px;
-      }
-
-      .nav {
-        gap: 12px;
-      }
-
-      .nav a:not(.btn) {
-        display: none;
-      }
-
-      .hero,
-      .band {
-        padding-left: 22px;
-        padding-right: 22px;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 72px;
-      }
-
-      .hero::before {
-        background:
-          linear-gradient(180deg, rgba(251, 252, 251, 0.98) 0%, rgba(251, 252, 251, 0.84) 44%, rgba(251, 252, 251, 0.32) 100%),
-          url("assets/protocol-hero.png") center right / cover no-repeat;
-        opacity: 0.8;
-      }
-
-      .section-head,
-      .eligibility-grid,
-      .intake-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .program-grid,
-      .product-grid,
-      .steps,
-      .notes {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .product-head {
-        align-items: start;
-        flex-direction: column;
-      }
+    /* ── FAQ ── */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 40px;
     }
 
-    @media (max-width: 640px) {
-      .topbar {
-        min-height: 62px;
-      }
+    .faq-item {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
 
-      .brand strong {
-        font-size: 18px;
-      }
+    .faq-item h4 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
 
-      .btn {
-        min-height: 42px;
-        padding: 0 14px;
-        font-size: 14px;
-      }
+    .faq-item p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
 
-      .hero {
-        padding-top: 52px;
-        padding-bottom: 70px;
-      }
+    /* ── Disclaimer ── */
+    .disclaimer-band {
+      background: var(--navy);
+      padding: 24px 48px;
+    }
 
-      .hero-lede {
-        font-size: 17px;
-      }
+    .disclaimer-inner {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+    }
 
-      .proof-row,
-      .program-grid,
-      .product-grid,
-      .steps,
-      .notes,
-      .field-grid,
-      .mini-metrics,
-      .footer-inner {
-        grid-template-columns: 1fr;
-      }
+    .disclaimer-inner p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      margin-bottom: 0;
+      font-family: 'IBM Plex Mono', monospace;
+    }
 
-      .intake-panel {
-        padding: 22px;
-      }
+    /* ── Footer ── */
+    footer {
+      background: #0f1e2b;
+      padding: 56px 48px 32px;
+    }
 
-      footer {
-        padding: 30px 22px;
-      }
+    .footer-grid {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
 
-      .footer-links {
-        flex-wrap: wrap;
-      }
+    .footer-brand strong {
+      display: block;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .footer-col h5 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.18s;
+    }
+
+    .footer-col a:hover { color: #fff; }
+
+    .footer-bottom {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ── Concierge widget ── */
+    #concierge-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 1000;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(27,43,58,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    #concierge-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 32px rgba(27,43,58,0.45);
+    }
+
+    #concierge-panel {
+      position: fixed;
+      bottom: 96px;
+      right: 28px;
+      z-index: 1000;
+      width: 360px;
+      max-height: 520px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 24px 60px rgba(27,43,58,0.22);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.92) translateY(12px);
+      transform-origin: bottom right;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    #concierge-panel.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .concierge-header {
+      padding: 16px 20px;
+      background: var(--navy);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .concierge-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .concierge-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .concierge-header-text strong {
+      display: block;
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 1px;
+    }
+
+    .concierge-header-text span {
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    #concierge-close {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      font-size: 20px;
+      padding: 4px;
+      line-height: 1;
+      transition: color 0.18s;
+    }
+
+    #concierge-close:hover { color: #fff; }
+
+    #concierge-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .msg {
+      max-width: 86%;
+      padding: 10px 13px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .msg-assistant {
+      background: var(--wash);
+      color: var(--ink);
+      border-radius: 2px 10px 10px 10px;
+      align-self: start;
+    }
+
+    .msg-user {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 10px 2px 10px 10px;
+      align-self: end;
+      margin-left: auto;
+    }
+
+    .msg-typing {
+      display: flex;
+      gap: 4px;
+      padding: 12px 16px;
+    }
+
+    .msg-typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+      animation: bounce 1.2s infinite;
+    }
+
+    .msg-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .msg-typing span:nth-child(3) { animation-delay: 0.3s;  }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+      40% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    .concierge-input-row {
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    #concierge-input {
+      flex: 1;
+      padding: 9px 12px;
+      border: 1.5px solid var(--line);
+      border-radius: 20px;
+      font-size: 14px;
+      outline: none;
+      color: var(--ink);
+      min-height: 0;
+      resize: none;
+      background: #fff;
+      transition: border-color 0.18s;
+    }
+
+    #concierge-input:focus { border-color: var(--sage); }
+
+    #concierge-send {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      transition: background 0.18s;
+    }
+
+    #concierge-send:hover { background: #253c4e; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .topbar { padding: 0 28px; }
+      .nav a:not(.btn-primary) { display: none; }
+      .band { padding-left: 28px; padding-right: 28px; }
+      .band-sm { padding-left: 28px; padding-right: 28px; }
+      .band-xs { padding-left: 28px; padding-right: 28px; }
+      .slogan-band, .disclaimer-band { padding-left: 28px; padding-right: 28px; }
+      .hero { padding-left: 28px; padding-right: 28px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .program-grid, .steps-grid, .cpp-grid, .partners-grid,
+      .origin-grid, .emergency-grid, .intake-wrap { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
+      .metrics-2 { grid-template-columns: 1fr 1fr; }
+      .trust-strip { flex-direction: column; }
+      .trust-pill { border-radius: 6px !important; margin-right: 0; margin-bottom: -1px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      footer { padding: 40px 24px 24px; }
+      .slogan-inner { flex-direction: column; align-items: flex-start; }
+      #concierge-panel { width: calc(100vw - 32px); right: 16px; bottom: 88px; }
     }
   </style>
 </head>
 <body>
-  <div class="site-shell">
-    <header class="topbar">
-      <a class="brand" href="#top" aria-label="Casanova Medicals home">
-        <strong>Casanova Medicals</strong>
-        <span>Protocol program</span>
-      </a>
-      <nav class="nav" aria-label="Primary">
-        <a href="#programs">Protocol</a>
-        <a href="#products">Care paths</a>
-        <a href="#process">Process</a>
-        <a href="#eligibility">Eligibility</a>
-        <a href="#faq">FAQ</a>
-        <a class="btn" href="#intake">Start intake</a>
-      </nav>
-    </header>
 
-    <section class="hero" id="top">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow">Clinician-reviewed supplement protocol</p>
-          <h1>Free eligibility check before any protocol enrollment.</h1>
-          <p class="hero-lede">
-            Casanova Medicals now starts with a no-cost review request. If a clinician signs off, approved patients can enroll in the Casanova Protocol Program: an AM/PM OTC supplement subscription with monthly check-ins and §07A outcomes tracking from day one.
-          </p>
-          <div class="hero-actions">
-            <a class="btn" href="#intake">Start free check</a>
-            <a class="btn secondary" href="#programs">View protocol</a>
-          </div>
-          <div class="proof-row" aria-label="Care model highlights">
-            <div class="proof">
-              <strong>$0 check</strong>
-              <span>No charge before clinician review</span>
-            </div>
-            <div class="proof">
-              <strong>24-48 hr review</strong>
-              <span>Priority routed by intake profile</span>
-            </div>
-            <div class="proof">
-              <strong>No prescriptions</strong>
-              <span>OTC protocol, reviewed before enrollment</span>
-            </div>
-          </div>
+  <!-- ── Topbar ── -->
+  <header class="topbar">
+    <a class="brand" href="#top">
+      <strong>Casanova Medicals</strong>
+      <em>Medical Navigation · SE Asia</em>
+    </a>
+    <nav class="nav">
+      <a href="#programs">Programs</a>
+      <a href="#protocol">Protocol</a>
+      <a href="#partners">Wellness</a>
+      <a href="#about">About</a>
+      <a class="btn btn-primary" href="#intake">Start free check</a>
+    </nav>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="hero" id="top">
+    <div class="hero-bg" role="presentation"></div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="section-label">Medical Navigation · Thailand · Vietnam · Malaysia</p>
+        <h1>You have outgrown what American medicine is willing to offer.</h1>
+        <p class="hero-lede">
+          Casanova Medicals navigates Americans 55+ through world-class care at Bumrungrad, RAKxa, Kamalaya, and partner institutions across Southeast Asia — with someone who actually knows the system, the hospitals, and how to get you home safely.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#intake">Start free eligibility check</a>
+          <a class="btn btn-outline" href="#programs">View programs</a>
+        </div>
+        <div class="trust-strip" role="list">
+          <div class="trust-pill" role="listitem"><span class="dot"></span> Bumrungrad & Bangkok Hospital</div>
+          <div class="trust-pill" role="listitem"><span class="dot"></span> RAKxa · Kamalaya · Chiva-Som</div>
+          <div class="trust-pill" role="listitem"><span class="dot"></span> 24/7 in-country coordinator</div>
+          <div class="trust-pill" role="listitem"><span class="dot"></span> Not a clinic — a navigator</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <!-- ── Slogan ── -->
+  <div class="slogan-band">
+    <div class="slogan-inner">
+      <p class="slogan">
+        <strong>Consult.</strong> &nbsp;
+        <strong>Suggest.</strong> &nbsp;
+        <strong>Route.</strong> &nbsp;
+        <strong>Oversee.</strong> &nbsp;
+        <strong>Love.</strong>
+      </p>
+      <p class="slogan" style="color:rgba(255,255,255,0.38);">
+        Casanova Medicals is not a clinic. We coordinate, navigate, and advocate — every step.
+      </p>
+    </div>
   </div>
 
-  <main>
-    <section class="band white" id="programs">
-      <div class="inner">
-        <div class="section-head">
-          <h2>The Casanova Protocol Program is the first product layer.</h2>
-          <p>
-            CPP is the v1 product layer: free intake, clinician review, approved Protocol A/B enrollment at $249/month, and §07A outcomes tracking from day one.
-          </p>
-        </div>
+  <!-- ── Programs ── -->
+  <section class="band band-white" id="programs">
+    <div class="inner">
+      <p class="section-label">In-Country Programs</p>
+      <h2 style="font-size:clamp(36px,4.5vw,60px); max-width:720px; margin-bottom:12px;">
+        Three programs. One promise: we go with you.
+      </h2>
+      <p style="font-size:17px; color:var(--ink-soft); max-width:640px; line-height:1.75;">
+        Coordination fees cover everything Casanova does. Third-party costs (flights, accommodation, clinical care) are separate — and we itemize them before you commit.
+      </p>
 
-        <div class="program-grid">
-          <article class="program-card">
-            <span class="tag">Protocol A</span>
-            <h3>AM Metabolic Buffer</h3>
-            <p>For metabolic support goals after clinician review. Built around the AM sachet format and verified supply documentation.</p>
-            <ul class="program-list">
-              <li>Berberine Aristata 500mg</li>
-              <li>Liposomal Magnesium 100mg</li>
-              <li>Curcumin C3 Complex 100mg + Piperine 2.5mg</li>
-            </ul>
-          </article>
+      <div class="program-grid">
 
-          <article class="program-card">
-            <span class="tag">Protocol B</span>
-            <h3>PM Recovery Reset</h3>
-            <p>For recovery, sleep-quality, and longevity-oriented goals, mapped to the PM mouthmelt tablet after review.</p>
-            <ul class="program-list">
-              <li>Magnesium Glycinate 400mg</li>
-              <li>L-Theanine 200mg + KSM-66 Ashwagandha 300mg</li>
-              <li>Chamomile Extract 50mg + Glycine 500mg</li>
-            </ul>
-          </article>
-
-          <article class="program-card">
-            <span class="tag">Full protocol</span>
-            <h3>AM + PM System</h3>
-            <p>The complete Casanova Protocol for patients whose intake and clinician review support both metabolic and recovery-path goals.</p>
-            <ul class="program-list">
-              <li>Protocol A + Protocol B combined</li>
-              <li>$249/month after clinician approval</li>
-              <li>§07A adherence and outcome tracking</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="product-section" id="products">
-          <div class="product-head">
-            <h3>Three care paths. One protocol engine.</h3>
-            <p>The public offer is intentionally simple: free intake first, clinician review second, subscription only if approved.</p>
+        <!-- The Reset -->
+        <article class="program-card">
+          <div class="program-tier">Tier 1 — The Reset</div>
+          <h3>The Reset</h3>
+          <p class="program-duration">10–14 days · Bangkok</p>
+          <div class="program-fee">$4,500</div>
+          <p class="program-fee-note">Coordination fee. All-in est. $7,000–$9,000</p>
+          <ul class="program-includes">
+            <li>Pre-trip physician consult (US-based)</li>
+            <li>2–3 specialist appointments at Bumrungrad or Bangkok Hospital</li>
+            <li>Imaging and lab panels</li>
+            <li>10× traditional Thai massage sessions</li>
+            <li>Airport transfers, accommodation coordination</li>
+            <li>Daily coordinator check-in</li>
+            <li>Post-trip 12-month care plan</li>
+            <li>30-day CPP supplement protocol included</li>
+          </ul>
+          <div class="program-cta">
+            <a class="btn btn-outline" style="width:100%;" href="#intake">Check eligibility</a>
           </div>
+          <p class="program-allin">All-in estimate: $7,000–$9,000 including flights</p>
+        </article>
 
-          <div class="product-grid">
-            <article class="product-card featured">
-              <div class="product-topline">
-                <span class="tag">Free</span>
-              </div>
-              <h4>Eligibility Check</h4>
-              <div class="price">$0 <span>before review</span></div>
-              <p>A 3-minute intake that routes each request into low, standard, or priority review. The score supports operations; it is not a medical decision.</p>
-              <ul class="program-list">
-                <li>Energy, sleep, current medication, and goal screen</li>
-                <li>24-48 hour review expectation</li>
-                <li>No product purchase before clinician sign-off</li>
-              </ul>
-              <div class="product-actions">
-                <a href="#intake">Start free check</a>
-              </div>
-            </article>
-
-            <article class="product-card">
-              <div class="product-topline">
-                <span class="tag">Metabolic</span>
-              </div>
-              <h4>Protocol A Path</h4>
-              <div class="price">$249 <span>/ month</span></div>
-              <p>For approved metabolic-path patients. Includes Protocol A shipment, onboarding, support, and monthly structured check-ins.</p>
-              <ul class="program-list">
-                <li>AM sachet protocol</li>
-                <li>Adherence and energy tracking</li>
-                <li>§07A outcome fields captured from month one</li>
-              </ul>
-              <div class="product-actions">
-                <a href="#intake">Check fit</a>
-              </div>
-            </article>
-
-            <article class="product-card">
-              <div class="product-topline">
-                <span class="tag">Recovery</span>
-              </div>
-              <h4>Protocol B Path</h4>
-              <div class="price">$249 <span>/ month</span></div>
-              <p>For approved recovery or longevity-path patients. Includes Protocol B shipment and monthly check-in structure.</p>
-              <ul class="program-list">
-                <li>PM mouthmelt protocol</li>
-                <li>Sleep and goal-progress tracking</li>
-                <li>Clinician-gated enrollment</li>
-              </ul>
-              <div class="product-actions">
-                <a href="#intake">Check fit</a>
-              </div>
-            </article>
-
-            <article class="product-card">
-              <div class="product-topline">
-                <span class="tag">Complete</span>
-              </div>
-              <h4>Full Protocol Path</h4>
-              <div class="price">$249 <span>/ month</span></div>
-              <p>For approved patients whose intake supports both metabolic and recovery-path needs. Includes AM + PM protocol assignment.</p>
-              <ul class="program-list">
-                <li>Protocol A + B assignment</li>
-                <li>7-day onboarding sequence</li>
-                <li>§07A outcomes dataset</li>
-              </ul>
-              <div class="product-actions">
-                <a href="#intake">Check fit</a>
-              </div>
-            </article>
-
-            <article class="product-card">
-              <div class="product-topline">
-                <span class="tag">Supply</span>
-              </div>
-              <h4>COA & Stability Gate</h4>
-              <div class="price">Required <span>before ship</span></div>
-              <p>Casanova should not ship any protocol until product identity, COA, labeling, and stability requirements are documented.</p>
-              <ul class="program-list">
-                <li>COA required before launch</li>
-                <li>24-month shelf-life target</li>
-                <li>Label language reviewed for accuracy</li>
-              </ul>
-              <div class="product-actions">
-                <a href="#faq">Read safeguards</a>
-              </div>
-            </article>
-
-            <article class="product-card">
-              <div class="product-topline">
-                <span class="tag">Future</span>
-              </div>
-              <h4>Phase 3 Expansion</h4>
-              <div class="price">Deferred <span>until ready</span></div>
-              <p>Prescription-path care stays out of the public offer until CPP proves acquisition, retention, economics, and real outcomes data.</p>
-              <ul class="program-list">
-                <li>Existing patient base first</li>
-                <li>Clinical relationship first</li>
-                <li>Partner conversations after traction</li>
-              </ul>
-              <div class="product-actions">
-                <a href="#intake">Start with CPP</a>
-              </div>
-            </article>
+        <!-- The Restore -->
+        <article class="program-card featured">
+          <div class="program-tier">Tier 2 — The Restore</div>
+          <h3>The Restore</h3>
+          <p class="program-duration">21 days · Bangkok + Wellness Retreat</p>
+          <div class="program-fee">$9,500</div>
+          <p class="program-fee-note">Coordination fee. All-in est. $15,000–$18,000</p>
+          <ul class="program-includes">
+            <li>Everything in The Reset</li>
+            <li>Full longevity panel: epigenetic age, telomere, hormones, microbiome, DEXA</li>
+            <li>NAD+ IV therapy (5–10 sessions)</li>
+            <li>Exosomes + peptide therapy</li>
+            <li>1 day at RAKxa, Kamalaya, or Chiva-Som</li>
+            <li>Premium serviced apartment</li>
+            <li>Day 7 + Day 14 in-person check-in</li>
+            <li>90-day CPP protocol included</li>
+          </ul>
+          <div class="program-cta">
+            <a class="btn btn-sage" style="width:100%;" href="#intake">Check eligibility</a>
           </div>
+          <p class="program-allin">All-in estimate: $15,000–$18,000 including flights</p>
+        </article>
 
-          <p class="product-note">
-            CPP is not an EHR, diagnostics platform, or prescription service. No enrollment is offered before clinician review, and health-specific questions are routed to clinician review rather than answered by site automation.
-          </p>
+        <!-- The Renew -->
+        <article class="program-card">
+          <div class="program-tier">Tier 3 — The Renew</div>
+          <h3>The Renew</h3>
+          <p class="program-duration">30+ days · Full Regenerative Program</p>
+          <div class="program-fee">$18,500</div>
+          <p class="program-fee-note">Coordination fee. All-in est. $30,000–$42,000</p>
+          <ul class="program-includes">
+            <li>Everything in The Reset + The Restore</li>
+            <li>Stem cell therapy (cultured/expanded)</li>
+            <li>Plasmapheresis + xenon gas</li>
+            <li>NK-cell expansion or CAR-NK engineered immune cells</li>
+            <li>5–7 night stay at premium wellness retreat</li>
+            <li>Private villa accommodation</li>
+            <li>Dedicated in-country coordinator throughout</li>
+            <li>Visa and relocation briefing</li>
+            <li>12-month CPP + quarterly physician check-ins</li>
+          </ul>
+          <div class="program-cta">
+            <a class="btn btn-outline" style="width:100%;" href="#intake">Check eligibility</a>
+          </div>
+          <p class="program-allin">All-in estimate: $30,000–$42,000 including flights</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How it works ── -->
+  <section class="band band-navy">
+    <div class="inner">
+      <p class="section-label" style="color:var(--sage);">How Casanova Works</p>
+      <h2 style="font-size:clamp(34px,4vw,54px); max-width:680px; margin-bottom:10px;">
+        Consult, suggest, route, oversee.
+      </h2>
+      <p style="max-width:580px; margin-bottom:0; font-size:16px; color:rgba(255,255,255,0.65); line-height:1.75;">
+        Casanova is not your doctor. We are the person who knows the doctors, knows the hospitals, knows which questions to ask, and stays with you every step of the way.
+      </p>
+
+      <div class="steps-grid">
+        <article class="step">
+          <div class="step-num">01 — CONSULT</div>
+          <h3>Free eligibility check</h3>
+          <p>A short intake form routes your request by priority. No product purchase before clinician review.</p>
+        </article>
+        <article class="step">
+          <div class="step-num">02 — SUGGEST</div>
+          <h3>Clinician review</h3>
+          <p>A licensed physician reviews your intake within 24–48 hours and suggests a program path or CPP protocol.</p>
+        </article>
+        <article class="step">
+          <div class="step-num">03 — ROUTE</div>
+          <h3>In-country coordination</h3>
+          <p>We book, brief, and accompany. Bumrungrad, RAKxa, or your chosen institution — we know these places personally.</p>
+        </article>
+        <article class="step">
+          <div class="step-num">04 — OVERSEE</div>
+          <h3>Continuous care</h3>
+          <p>Daily check-ins while you're in-country. Post-trip care plan. Monthly CPP tracking for outcomes data.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CPP Protocol ── -->
+  <section class="band band-paper" id="protocol">
+    <div class="inner">
+      <p class="section-label">Casanova Protocol Program · CPP</p>
+      <h2 style="font-size:clamp(34px,4vw,54px); max-width:700px; margin-bottom:12px;">
+        Start remote. Free intake, clinician review, $249/month if approved.
+      </h2>
+      <p style="font-size:16px; color:var(--ink-soft); max-width:600px; line-height:1.75; margin-bottom:36px;">
+        CPP is the entry layer. A free 3-minute eligibility check routes your request to a clinician. If approved, your AM/PM supplement protocol ships with monthly structured check-ins and outcomes tracking from day one.
+      </p>
+
+      <div class="cpp-grid">
+        <div class="cpp-card">
+          <div class="cpp-tag">Protocol A · AM</div>
+          <h4>AM Metabolic Buffer</h4>
+          <p>Clinician-reviewed AM sachet for metabolic support goals.</p>
+          <ul class="cpp-ingredient-list">
+            <li>Berberine Aristata 500mg</li>
+            <li>Liposomal Magnesium 100mg</li>
+            <li>Curcumin C3 Complex 100mg</li>
+            <li>Piperine 2.5mg</li>
+          </ul>
+        </div>
+        <div class="cpp-card">
+          <div class="cpp-tag">Protocol B · PM</div>
+          <h4>PM Recovery Reset</h4>
+          <p>Clinician-reviewed PM tablet for recovery, sleep quality, and longevity goals.</p>
+          <ul class="cpp-ingredient-list">
+            <li>Magnesium Glycinate 400mg</li>
+            <li>L-Theanine 200mg</li>
+            <li>KSM-66 Ashwagandha 300mg</li>
+            <li>Chamomile Extract (5% apigenin) 50mg</li>
+            <li>Glycine 500mg</li>
+          </ul>
+        </div>
+        <div class="cpp-card" style="background:var(--navy); border-color:var(--navy);">
+          <div class="cpp-tag" style="background:rgba(122,155,126,0.2); color:var(--sage);">Full Protocol · A + B</div>
+          <h4 style="color:#fff;">AM + PM System</h4>
+          <p style="color:rgba(255,255,255,0.65);">The complete Casanova Protocol. Both metabolic and recovery paths, after clinician approval of both.</p>
+          <div style="margin-top:auto;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:28px; font-weight:600; color:#fff; margin-bottom:4px;">$249<span style="font-size:14px; font-weight:400; color:rgba(255,255,255,0.5);">/month</span></div>
+            <p style="font-size:12px; color:rgba(255,255,255,0.45); margin-bottom:16px;">Card saved at intake. Charged only after clinician approval.</p>
+            <a class="btn btn-sage" style="width:100%; text-align:center;" href="#intake">Start free check →</a>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section class="band deep" id="process">
-      <div class="inner">
-        <div class="section-head">
-          <h2>From free check to protocol decision.</h2>
-          <p>
-            The immediate intake result is only a review status. The product offer appears after clinician approval, not before.
-          </p>
+      <!-- CPP trust strip -->
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:24px;">
+        <div style="display:flex; align-items:center; gap:10px; padding:14px 16px; background:#fff; border:1px solid var(--line); border-radius:8px;">
+          <span style="font-size:20px;">🔓</span>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:var(--navy);">Free check</div>
+            <div style="font-size:12px; color:var(--muted);">No charge before review</div>
+          </div>
         </div>
-
-        <div class="steps">
-          <article class="step-card">
-            <div class="step-num">01</div>
-            <h3>Free intake</h3>
-            <p>Energy, sleep, medication history, goal, and safety notes generate an operational review priority.</p>
-          </article>
-          <article class="step-card">
-            <div class="step-num">02</div>
-            <h3>Review status</h3>
-            <p>Low, standard, or priority routing sets expectations without making an automated medical decision.</p>
-          </article>
-          <article class="step-card">
-            <div class="step-num">03</div>
-            <h3>Protocol decision</h3>
-            <p>A clinician approves, does not approve, or asks for more information before enrollment is offered.</p>
-          </article>
-          <article class="step-card">
-            <div class="step-num">04</div>
-            <h3>Monthly check-in</h3>
-            <p>Approved subscriptions collect §07A adherence, energy, sleep, and goal-progress data from the first month.</p>
-          </article>
+        <div style="display:flex; align-items:center; gap:10px; padding:14px 16px; background:#fff; border:1px solid var(--line); border-radius:8px;">
+          <span style="font-size:20px;">👨‍⚕️</span>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:var(--navy);">48hr review</div>
+            <div style="font-size:12px; color:var(--muted);">Licensed clinician</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:14px 16px; background:#fff; border:1px solid var(--line); border-radius:8px;">
+          <span style="font-size:20px;">📋</span>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:var(--navy);">Outcomes tracked</div>
+            <div style="font-size:12px; color:var(--muted);">§07A from month one</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; padding:14px 16px; background:#fff; border:1px solid var(--line); border-radius:8px;">
+          <span style="font-size:20px;">🚫</span>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:var(--navy);">No prescriptions</div>
+            <div style="font-size:12px; color:var(--muted);">OTC protocol only</div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="band" id="eligibility">
-      <div class="inner">
-        <div class="section-head">
-          <h2>Responsible access without pretending to prescribe.</h2>
-          <p>
-            CPP is designed as a clinician-reviewed supplement program. Prescription-path expansion stays deferred until the v1 program has real patients, retention, economics, and outcomes data.
-          </p>
+  <!-- ── Wellness Partners ── -->
+  <section class="band band-white" id="partners">
+    <div class="inner">
+      <p class="section-label">Wellness Partner Network</p>
+      <h2 style="font-size:clamp(34px,4vw,54px); max-width:640px; margin-bottom:12px;">
+        The institutions we route to. Personally vetted.
+      </h2>
+      <p style="font-size:16px; color:var(--ink-soft); max-width:600px; line-height:1.75;">
+        We work with institutions we have visited, trust, and maintain ongoing relationships with. Nothing is referred speculatively.
+      </p>
+
+      <div class="partners-grid">
+        <div class="partner-card">
+          <div class="partner-country">Thailand · Bangkok</div>
+          <h4>Bumrungrad International Hospital</h4>
+          <p>Global benchmark for specialist care. Cardiology, oncology, orthopaedics, and diagnostics at world-class standards. Casanova's primary clinical partner.</p>
         </div>
+        <div class="partner-card">
+          <div class="partner-country">Thailand · Bangkok</div>
+          <h4>RAKxa Integrative Wellness</h4>
+          <p>Bangkok's leading integrative medical wellness retreat. Tier 2 and Tier 3 primary retreat partner. Combines functional medicine, Traditional Thai Medicine, and longevity science.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-country">Thailand · Koh Samui</div>
+          <h4>Kamalaya Koh Samui</h4>
+          <p>Award-winning holistic wellness retreat integrating Eastern healing traditions with Western medical science. Tier 2 and Tier 3 optional.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-country">Thailand · Hua Hin</div>
+          <h4>Chiva-Som</h4>
+          <p>One of the world's most celebrated destination spas. Personalised health programmes, physiotherapy, and preventive medicine.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-country">Malaysia · Penang</div>
+          <h4>Penang Adventist & Prince Court</h4>
+          <p>Premier medical centres in Penang and Kuala Lumpur for specialist consultations, cardiac care, and oncology workups.</p>
+        </div>
+        <div class="partner-card">
+          <div class="partner-country">Vietnam · Ho Chi Minh City</div>
+          <h4>FV Hospital & Vinmec</h4>
+          <p>Vietnam's leading international-standard hospitals. Strong oncology, cardiac, and general medicine departments across Hanoi and HCMC.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="eligibility-grid">
-          <article class="eligibility-card">
-            <h3>Good-fit signals</h3>
-            <ul class="checklist">
-              <li><span class="check">✓</span><span>You want a clinician-reviewed path before buying an ongoing protocol.</span></li>
-              <li><span class="check">✓</span><span>You can share accurate medical history and current medications.</span></li>
-              <li><span class="check">✓</span><span>You are comfortable with monthly adherence and outcome check-ins.</span></li>
-              <li><span class="check">✓</span><span>You understand the protocol is not a diagnosis, prescription, or guaranteed outcome.</span></li>
-            </ul>
-          </article>
+  <!-- ── Origin / About ── -->
+  <section class="band band-paper" id="about">
+    <div class="inner">
+      <p class="section-label">Why We Exist</p>
+      <h2 style="font-size:clamp(34px,4vw,54px); max-width:700px; margin-bottom:12px;">
+        Three true stories. One reason Casanova exists.
+      </h2>
+      <p style="font-size:16px; color:var(--ink-soft); max-width:620px; line-height:1.75;">
+        "Four Seasons meets a wise friend who has lived in Bangkok for ten years." Not a clinic. Not a startup. A trusted advisor built from years of living this.
+      </p>
 
-          <article class="eligibility-card">
-            <h3>Safety filters</h3>
-            <ul class="checklist">
-              <li><span class="check">✓</span><span>Contraindications, allergies, pregnancy status, and current medications are reviewed before enrollment.</span></li>
-              <li><span class="check">✓</span><span>COA and stability documentation are required before CPP ships under the Casanova name.</span></li>
-              <li><span class="check">✓</span><span>Health-specific questions are routed to clinician review, not answered by site automation.</span></li>
-            </ul>
-            <div class="warning">
-              This site does not diagnose, treat, prescribe, or replace medical care. The intake score is operational routing only; a clinician makes the review decision.
+      <div class="origin-grid">
+        <div class="origin-card">
+          <h4>Bangkok, 2015</h4>
+          <p>A 30-day trip became a life. What started as curiosity about the cost of care in Thailand turned into a decade of relationships with surgeons, wellness directors, visa specialists, and apartment managers who became friends. That network is what Casanova offers.</p>
+        </div>
+        <div class="origin-card">
+          <h4>Vietnam COVID</h4>
+          <p>Stuck during a border closure for a week — and stayed for four years. Vietnam taught us what long-stay medical navigation actually requires: banking, visas, language, hospital relationships, and someone who will pick up the phone at 2 AM. We built all of it.</p>
+        </div>
+        <div class="origin-card">
+          <h4>The Gallbladder</h4>
+          <p>An unexpected emergency in Bangkok. Surgery at a Bumrungrad-affiliated hospital, world-class care, warm recovery, and a final bill a fraction of what it would have cost in the US. That experience, lived personally, is the reason Casanova exists for people who deserve the same outcome.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:36px; padding:28px 32px; background:#fff; border:1px solid var(--line); border-radius:10px; max-width:760px;">
+        <p style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-style:italic; color:var(--navy); line-height:1.6; margin-bottom:16px;">
+          "Casanova Medicals is non-judgmental about how clients choose to live their lives in Southeast Asia. We are here to help you get better care, live better, and navigate a part of the world that rewards the curious and the brave."
+        </p>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); letter-spacing:1px; text-transform:uppercase;">— Founding Principle</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Emergency Protocol ── -->
+  <section class="band band-white">
+    <div class="inner">
+      <p class="section-label">Emergency Protocol</p>
+      <h2 style="font-size:clamp(30px,3.5vw,48px); max-width:640px; margin-bottom:12px;">
+        What happens if something goes wrong in-country.
+      </h2>
+      <p style="font-size:16px; color:var(--ink-soft); max-width:580px; line-height:1.75;">
+        This is the protocol we brief every client on before departure. It is also the protocol we have used.
+      </p>
+
+      <div class="emergency-grid">
+        <ul class="emergency-steps">
+          <li>
+            <div class="emergency-step-num">01</div>
+            <div>
+              <h5>Pre-departure briefing</h5>
+              <p>Full medical history briefed to in-country coordinator. SafetyWing or Pacific Cross confirmed active. Preferred hospital pre-registered.</p>
             </div>
-          </article>
+          </li>
+          <li>
+            <div class="emergency-step-num">02</div>
+            <div>
+              <h5>24-hour WhatsApp line</h5>
+              <p>Always answered. Not a call centre. Your coordinator's personal number — someone who knows your name and your history.</p>
+            </div>
+          </li>
+          <li>
+            <div class="emergency-step-num">03</div>
+            <div>
+              <h5>Coordinator goes to the hospital</h5>
+              <p>Not a referral. Not a phone number. Your Casanova coordinator is physically present — advocating, translating, and staying until you are stable.</p>
+            </div>
+          </li>
+          <li>
+            <div class="emergency-step-num">04</div>
+            <div>
+              <h5>Family communication</h5>
+              <p>Casanova handles all family-facing updates. You focus on recovery. We handle the logistics — extended stay, accommodation, visitor coordination.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="emergency-panel">
+          <h4>Travel insurance, handled.</h4>
+          <p>We recommend and coordinate SafetyWing for short-stay medical emergencies and Pacific Cross or Cigna Global for comprehensive international health coverage. We brief the insurer before you leave and confirm policy activation before departure day.</p>
+          <p>We also help you set up a Charles Schwab debit account (no foreign transaction fees, global ATM reimbursement) and ExpressVPN for secure banking access while in-country.</p>
+          <div class="emergency-contact">📞 24/7 Emergency: WhatsApp on your welcome brief</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="band white" id="intake">
-      <div class="inner">
-        <div class="intake-panel">
-          <div class="intake-copy">
-            <p class="eyebrow">Free eligibility check</p>
-            <h2>Start with a review status, not a checkout.</h2>
-            <p>
-              Answer a short screening form. You will see an immediate review-priority status, and no enrollment is offered until clinician approval.
-            </p>
-            <div class="mini-metrics">
-              <div class="metric">
-                <strong>3 min</strong>
-                <span>No-cost intake</span>
-              </div>
-              <div class="metric">
-                <strong>48 hr</strong>
-                <span>Standard review target</span>
-              </div>
+  <!-- ── Intake ── -->
+  <section class="band band-wash" id="intake">
+    <div class="inner">
+      <div class="intake-wrap">
+
+        <div class="intake-copy">
+          <p class="section-label">Free Eligibility Check</p>
+          <h2>Start with a review status, not a checkout.</h2>
+          <p>
+            Answer five short questions. A clinician reviews within 24–48 hours. No product enrollment, no charge — until approval.
+          </p>
+
+          <div class="metrics-2">
+            <div class="metric-card">
+              <strong>$0</strong>
+              <span>No charge before clinician review</span>
+            </div>
+            <div class="metric-card">
+              <strong>48hr</strong>
+              <span>Standard review target</span>
             </div>
           </div>
 
-          <form id="protocol-intake">
-            <div class="field-grid">
+          <div class="intake-trust">
+            <div class="intake-trust-item">
+              <span class="check">✓</span>
+              Free intake. No card required.
+            </div>
+            <div class="intake-trust-item">
+              <span class="check">✓</span>
+              Clinician reviews — not an algorithm.
+            </div>
+            <div class="intake-trust-item">
+              <span class="check">✓</span>
+              Card saved only after approval, charged only if you confirm.
+            </div>
+            <div class="intake-trust-item">
+              <span class="check">✓</span>
+              Outcomes tracked from month one (§07A).
+            </div>
+          </div>
+        </div>
+
+        <div class="intake-form-wrap">
+          <form id="intake-form" novalidate>
+            <div class="field-row">
               <label>
                 Full name
-                <input name="name" autocomplete="name" required />
+                <input type="text" name="name" autocomplete="name" required placeholder="Barbara Chen" />
               </label>
               <label>
-                Email
-                <input type="email" name="email" autocomplete="email" required />
-              </label>
-            </div>
-
-            <div class="field-grid">
-              <label>
-                Energy across a typical day
-                <select name="energy" data-score required>
-                  <option value="">Select one</option>
-                  <option value="0">Steady</option>
-                  <option value="2">Variable, peaks and crashes</option>
-                  <option value="3">Chronically low</option>
-                </select>
-              </label>
-              <label>
-                Sleep quality
-                <select name="sleep" data-score required>
-                  <option value="">Select one</option>
-                  <option value="0">Restorative</option>
-                  <option value="2">Fragmented</option>
-                  <option value="3">Poor, rarely rested</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="field-grid">
-              <label>
-                Medication history relevant to review
-                <select name="medHistory" data-score required>
-                  <option value="">Select one</option>
-                  <option value="0">No current medications</option>
-                  <option value="3">Currently taking medication</option>
-                  <option value="2">Stopped a relevant medication recently</option>
-                </select>
-              </label>
-              <label>
-                Primary goal
-                <select name="goal" required>
-                  <option value="">Select one</option>
-                  <option>Metabolic</option>
-                  <option>Recovery</option>
-                  <option>Longevity</option>
-                  <option>Not sure yet</option>
-                </select>
+                Email address
+                <input type="email" name="email" autocomplete="email" required placeholder="barbara@example.com" />
               </label>
             </div>
 
             <label>
-              Current medications, allergies, or diagnosed conditions
-              <textarea name="flags" placeholder="Share anything the reviewer should know before assigning a protocol path"></textarea>
+              Energy across a typical day
+              <select name="energy" data-score required>
+                <option value="">Select one</option>
+                <option value="0">Steady — consistent energy throughout the day</option>
+                <option value="2">Variable — noticeable peaks and crashes</option>
+                <option value="3">Chronically low — rarely feel rested or energised</option>
+              </select>
             </label>
 
-            <label class="consent">
-              <input type="checkbox" required />
-              <span>I understand this request is not medical advice, does not guarantee approval, and does not enroll me in a product unless a clinician approves the protocol path.</span>
+            <label>
+              Sleep quality
+              <select name="sleep" data-score required>
+                <option value="">Select one</option>
+                <option value="0">Restorative — wake feeling rested</option>
+                <option value="2">Fragmented — frequent waking or difficulty falling asleep</option>
+                <option value="3">Poor — rarely feel rested regardless of hours</option>
+              </select>
             </label>
 
-            <button class="btn" type="submit">See review status</button>
-            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+            <label>
+              Current medications or relevant history
+              <select name="medHistory" data-score required>
+                <option value="">Select one</option>
+                <option value="0">No current medications</option>
+                <option value="2">Stopped a relevant medication recently</option>
+                <option value="3">Currently taking one or more medications</option>
+              </select>
+            </label>
+
+            <label>
+              Primary goal
+              <select name="goal" required>
+                <option value="">Select one</option>
+                <option value="metabolic">Metabolic health</option>
+                <option value="recovery">Recovery and sleep quality</option>
+                <option value="longevity">Longevity and preventive care</option>
+                <option value="in-country">In-country program (The Reset / Restore / Renew)</option>
+                <option value="unsure">Not sure yet — want a consultation</option>
+              </select>
+            </label>
+
+            <label>
+              Medications, allergies, or diagnosed conditions
+              <textarea name="flags" placeholder="Share anything the reviewer should know before assigning a protocol path — medications, allergies, relevant diagnoses." rows="3"></textarea>
+            </label>
+
+            <label class="consent-row">
+              <input type="checkbox" name="consent" required />
+              <span>I understand this is not medical advice, does not guarantee approval, and does not enroll me in any product unless a clinician approves. I consent to Casanova storing my intake for clinician review.</span>
+            </label>
+
+            <button class="btn btn-primary" type="submit" style="width:100%; min-height:50px; font-size:15px;">
+              See review status →
+            </button>
+
+            <div class="form-score-display" id="form-result" role="status" aria-live="polite">
+              <div class="score-label" id="result-label"></div>
+              <div class="score-message" id="result-message"></div>
+            </div>
           </form>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="band" id="faq">
-      <div class="inner">
-        <div class="notes">
-          <article class="note-card">
-            <h3>Is CPP a prescription service?</h3>
-            <p>No. CPP is positioned as a clinician-reviewed OTC protocol program. Prescription-path expansion is Phase 3, after CPP proves demand, retention, economics, and outcomes.</p>
-          </article>
-          <article class="note-card">
-            <h3>Does the free check cost anything?</h3>
-            <p>No. The intake is free. The $249/month subscription is only relevant after clinician approval and protocol assignment.</p>
-          </article>
-          <article class="note-card">
-            <h3>What if I am not approved?</h3>
-            <p>No protocol enrollment is offered. The system should send a written explanation or education-only path once the backend workflow is connected.</p>
-          </article>
+  <!-- ── FAQ ── -->
+  <section class="band band-white" id="faq">
+    <div class="inner">
+      <p class="section-label">Frequently Asked</p>
+      <h2 style="font-size:clamp(30px,3.5vw,48px); margin-bottom:0;">Honest answers.</h2>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>Is Casanova a clinic or a medical provider?</h4>
+          <p>No. Casanova is a medical navigation and patient advocacy company. All clinical care is performed by licensed physicians and institutions at our partner hospitals. We consult, suggest, route, and oversee — we do not diagnose, treat, or prescribe.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do I need to travel to use Casanova?</h4>
+          <p>No. CPP is fully remote — free intake, clinician review, and $249/month supplement protocol shipped to your door. In-country programs (The Reset, Restore, Renew) require travel to Thailand, Vietnam, or Malaysia.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What does the $4,500 / $9,500 / $18,500 cover?</h4>
+          <p>Casanova's coordination fee. This covers all navigation, liaison, coordination, in-country check-ins, pre-trip physician consultation, post-trip care plan, and CPP enrollment. It does not include flights, accommodation, or clinical costs — which we itemize separately before you commit.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Is CPP a prescription service?</h4>
+          <p>No. CPP is a clinician-reviewed OTC supplement program. Protocol A (AM) and Protocol B (PM) contain over-the-counter ingredients — Berberine, Magnesium Glycinate, L-Theanine, and others. A clinician reviews suitability before enrollment; no prescription is issued.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What if I'm not approved for CPP?</h4>
+          <p>No subscription is charged. The clinician may suggest an alternative path or ask for more information. You will always receive a written explanation — the intake is never a black box.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Is this safe? Who are the doctors?</h4>
+          <p>Bumrungrad International Hospital is rated among the top hospitals in Asia by international accreditation bodies. Our physician oversight partner holds active international clinical trial PI roles. We can share institutional credentials and COA documentation on request.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I do this on my own without Casanova?</h4>
+          <p>Yes — and some people do. What Casanova offers is 10+ years of relationships, the ability to get appointments that aren't listed online, in-country coordination if something goes wrong, and a year-long care arc rather than a single trip.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What about my privacy and medical records?</h4>
+          <p>Intake data is stored securely and used only for clinician review and program coordination. Outcomes data is de-identified for research purposes with your consent, captured via §07A structured tracking. We hold data to the same standard as a US-based patient advocate.</p>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
+  <!-- ── Disclaimer ── -->
+  <div class="disclaimer-band">
+    <div class="disclaimer-inner">
+      <p>Casanova Medicals is an informational and care coordination experience. It does not provide emergency care, diagnose, treat, prescribe, or replace a qualified healthcare professional. CPP enrollment is not guaranteed and depends on clinician review. The Casanova Protocol is an OTC supplement program reviewed before enrollment; COA, stability, labeling, and fulfillment safeguards are required before any shipment under the Casanova name. In-country program prices represent Casanova coordination fees only; third-party costs (flights, accommodation, clinical care) are itemized separately. Past outcomes described are individual experiences and do not guarantee similar results.</p>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
   <footer>
-    <div class="footer-inner">
-      <div>
+    <div class="footer-grid">
+      <div class="footer-brand">
         <strong>Casanova Medicals</strong>
-        <span>Clinician-reviewed AM/PM protocol program.</span>
+        <p>Medical navigation and patient advocacy for Americans 55+ seeking world-class care in Southeast Asia.</p>
+        <a class="btn btn-outline" style="border-color:rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); width:fit-content;" href="#intake">Start free check</a>
       </div>
-      <div class="footer-links">
-        <a href="mailto:hello@casanovamed.com">Contact</a>
-        <a href="#intake">Intake</a>
-        <a href="#programs">Protocol</a>
+      <div class="footer-col">
+        <h5>Programs</h5>
+        <a href="#programs">The Reset — $4,500</a>
+        <a href="#programs">The Restore — $9,500</a>
+        <a href="#programs">The Renew — $18,500</a>
+        <a href="#protocol">CPP Protocol — $249/mo</a>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <a href="#partners">Wellness Partners</a>
+        <a href="#about">About Casanova</a>
+        <a href="#faq">FAQ</a>
+        <a href="#intake">Start Intake</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:hello@casanovamed.com">hello@casanovamed.com</a>
+        <a href="#intake">Free eligibility check</a>
       </div>
     </div>
-    <div class="footer-inner">
-      <p class="legal">
-        Casanova Medicals is an informational and care coordination experience. It does not provide emergency care, diagnose, prescribe, or replace a qualified healthcare professional. CPP enrollment is not guaranteed and depends on clinician review. The Casanova Protocol is an OTC supplement program with §07A outcomes tracking; COA, stability, labeling, and fulfillment safeguards must be completed before shipment under the Casanova name.
-      </p>
+    <div class="footer-bottom">
+      <span>© 2026 Casanova Medicals. Not a medical provider. Care navigation only.</span>
+      <span class="mono" style="font-size:11px; letter-spacing:1px;">CONSULT · SUGGEST · ROUTE · OVERSEE · LOVE</span>
     </div>
   </footer>
 
-  <script>
-    const form = document.querySelector("#protocol-intake");
-    const status = document.querySelector("#form-status");
+  <!-- ── AI Concierge Widget ── -->
+  <button id="concierge-btn" aria-label="Open Casanova concierge" title="Ask the Casanova concierge">
+    💬
+  </button>
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = Object.fromEntries(new FormData(form).entries());
-      const score = [...form.querySelectorAll("[data-score]")].reduce((total, field) => {
-        return total + Number(field.value || 0);
-      }, 0);
-      const priority = score >= 7 ? "Priority Review" : score >= 4 ? "Standard Review" : "General Review";
-      const target = score >= 7 ? "typically 24 hours" : score >= 4 ? "typically 48 hours" : "review queue";
-      const submission = {
-        ...data,
-        score,
-        priority,
-        submittedAt: new Date().toISOString()
+  <div id="concierge-panel" role="dialog" aria-label="Casanova concierge" aria-hidden="true">
+    <div class="concierge-header">
+      <div class="concierge-header-left">
+        <div class="concierge-avatar">🏥</div>
+        <div class="concierge-header-text">
+          <strong>Casanova Concierge</strong>
+          <span>Programs · Logistics · Protocol</span>
+        </div>
+      </div>
+      <button id="concierge-close" aria-label="Close concierge">×</button>
+    </div>
+    <div id="concierge-messages" aria-live="polite">
+      <div class="msg msg-assistant">
+        Hello — I'm here to answer any questions about Casanova Medicals, our programs, the CPP protocol, or the in-country experience. What would you like to know?
+      </div>
+    </div>
+    <div class="concierge-input-row">
+      <input
+        type="text"
+        id="concierge-input"
+        placeholder="Ask about programs, costs, logistics…"
+        aria-label="Message the Casanova concierge"
+        autocomplete="off"
+      />
+      <button id="concierge-send" aria-label="Send message">→</button>
+    </div>
+  </div>
+
+  <script>
+    // ── Intake Form ──────────────────────────────────────────────────────────
+    const intakeForm   = document.getElementById('intake-form');
+    const formResult   = document.getElementById('form-result');
+    const resultLabel  = document.getElementById('result-label');
+    const resultMsg    = document.getElementById('result-message');
+
+    const SUPABASE_URL     = 'REPLACE_WITH_SUPABASE_URL';
+    const SUPABASE_ANON    = 'REPLACE_WITH_SUPABASE_ANON_KEY';
+    const SUPABASE_ENABLED = !SUPABASE_URL.includes('REPLACE');
+
+    intakeForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data    = Object.fromEntries(new FormData(intakeForm).entries());
+      const score   = [...intakeForm.querySelectorAll('[data-score]')]
+        .reduce((sum, el) => sum + Number(el.value || 0), 0);
+
+      let priority, reviewTime, tier;
+      if (score >= 9)      { priority = 'Priority Profile';  reviewTime = '24 hours'; tier = 'priority'; }
+      else if (score >= 5) { priority = 'Standard Profile';  reviewTime = '48 hours'; tier = 'standard'; }
+      else                 { priority = 'Low Priority Profile'; reviewTime = 'standard queue'; tier = 'general'; }
+
+      const submission = { ...data, score, priority, submitted_at: new Date().toISOString() };
+
+      // Persist locally always
+      const existing = JSON.parse(localStorage.getItem('casanova_intakes') || '[]');
+      existing.push(submission);
+      localStorage.setItem('casanova_intakes', JSON.stringify(existing));
+
+      // Send to Supabase if configured
+      if (SUPABASE_ENABLED) {
+        try {
+          await fetch(`${SUPABASE_URL}/rest/v1/intakes`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': SUPABASE_ANON,
+              'Authorization': `Bearer ${SUPABASE_ANON}`,
+              'Prefer': 'return=minimal',
+            },
+            body: JSON.stringify({
+              email:       data.email,
+              name:        data.name,
+              score,
+              priority:    tier,
+              goal:        data.goal,
+              flags:       data.flags || null,
+              med_history: data.medHistory,
+            }),
+          });
+        } catch (err) {
+          console.warn('Supabase submission failed — saved locally', err);
+        }
+      }
+
+      const messages = {
+        priority: `Your intake has been received as a Priority Profile (score ${score}). A clinician will review within approximately ${reviewTime}. You will receive an email with your review status and next steps. No protocol is enrolled or charged before that review.`,
+        standard: `Your intake has been received as a Standard Profile (score ${score}). A clinician will review within ${reviewTime}. You will receive an email with your review status and next steps. No protocol is enrolled or charged before that review.`,
+        general:  `Your intake has been received as a Low Priority Profile (score ${score}). It has entered the standard review queue. You will receive an email with your review status and next steps. No product enrollment is offered before clinician review.`,
       };
 
-      const existing = JSON.parse(localStorage.getItem("casanovaProtocolIntakes") || "[]");
-      existing.push(submission);
-      localStorage.setItem("casanovaProtocolIntakes", JSON.stringify(existing));
+      formResult.className = `form-score-display visible ${tier}`;
+      resultLabel.textContent = priority;
+      resultMsg.textContent   = messages[tier];
+      intakeForm.reset();
+      formResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
 
-      status.textContent = `${priority} submitted. Intake score ${score}. Expected reviewer routing: ${target}. No protocol enrollment is offered before clinician approval.`;
-      status.classList.add("visible");
-      form.reset();
+    // ── Concierge Widget ─────────────────────────────────────────────────────
+    const conciergeBtn   = document.getElementById('concierge-btn');
+    const conciergePanel = document.getElementById('concierge-panel');
+    const conciergeClose = document.getElementById('concierge-close');
+    const conciergeInput = document.getElementById('concierge-input');
+    const conciergeSend  = document.getElementById('concierge-send');
+    const msgContainer   = document.getElementById('concierge-messages');
+
+    const CONCIERGE_API = 'REPLACE_WITH_CONCIERGE_API_ENDPOINT';
+    const CONCIERGE_ENABLED = !CONCIERGE_API.includes('REPLACE');
+
+    let history = [];
+    let isOpen  = false;
+
+    const SYSTEM_PROMPT = `You are the Casanova Medicals concierge. Casanova Medicals is a medical navigation and patient advocacy company that helps Americans 55+ access world-class care at partner hospitals and wellness retreats in Thailand, Vietnam, and Malaysia. You are warm, knowledgeable, and non-judgmental.
+
+You can answer questions about:
+- The three in-country programs: The Reset ($4,500 coordination fee, 10-14 days), The Restore ($9,500, 21 days), The Renew ($18,500, 30+ days)
+- CPP (Casanova Protocol Program): free intake, clinician review, $249/month supplement subscription (Protocol A AM or Protocol B PM) if approved
+- Partner hospitals: Bumrungrad International, Bangkok Hospital, RAKxa, Kamalaya, Chiva-Som
+- Logistics: travel insurance (SafetyWing/Pacific Cross), accommodation, airport transfers, visa options
+- The intake and review process
+- General questions about medical care in Thailand, Vietnam, and Malaysia
+
+You must NOT:
+- Offer medical advice, diagnose, or recommend specific treatments
+- Answer clinical questions — always redirect: "Your clinician will cover that during your review"
+- Create urgency or pressure to enroll
+- Guarantee outcomes
+
+Always be helpful and reassuring. Keep responses concise — 2-4 sentences maximum unless a longer answer is clearly needed.`;
+
+    function addMessage(role, text) {
+      const div = document.createElement('div');
+      div.className = `msg msg-${role}`;
+      div.textContent = text;
+      msgContainer.appendChild(div);
+      msgContainer.scrollTop = msgContainer.scrollHeight;
+      return div;
+    }
+
+    function addTyping() {
+      const div = document.createElement('div');
+      div.className = 'msg msg-assistant msg-typing';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      msgContainer.appendChild(div);
+      msgContainer.scrollTop = msgContainer.scrollHeight;
+      return div;
+    }
+
+    async function sendMessage(text) {
+      if (!text.trim()) return;
+
+      history.push({ role: 'user', content: text });
+      addMessage('user', text);
+      conciergeInput.value = '';
+
+      const typing = addTyping();
+
+      if (!CONCIERGE_ENABLED) {
+        setTimeout(() => {
+          typing.remove();
+          const fallback = "Thanks for your question. Our concierge is being set up — please email hello@casanovamed.com and we'll respond within 24 hours.";
+          addMessage('assistant', fallback);
+          history.push({ role: 'assistant', content: fallback });
+        }, 800);
+        return;
+      }
+
+      try {
+        const res  = await fetch(CONCIERGE_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ system: SYSTEM_PROMPT, messages: history }),
+        });
+        const data = await res.json();
+        typing.remove();
+
+        const reply = data.content?.[0]?.text ?? data.reply ?? 'I had trouble with that — please email hello@casanovamed.com.';
+        addMessage('assistant', reply);
+        history.push({ role: 'assistant', content: reply });
+      } catch (err) {
+        typing.remove();
+        addMessage('assistant', 'I had trouble connecting. Please email hello@casanovamed.com and we\'ll respond shortly.');
+        console.error('Concierge error:', err);
+      }
+    }
+
+    function togglePanel() {
+      isOpen = !isOpen;
+      conciergePanel.classList.toggle('open', isOpen);
+      conciergePanel.setAttribute('aria-hidden', String(!isOpen));
+      conciergeBtn.textContent = isOpen ? '×' : '💬';
+      if (isOpen) { setTimeout(() => conciergeInput.focus(), 240); }
+    }
+
+    conciergeBtn.addEventListener('click', togglePanel);
+    conciergeClose.addEventListener('click', togglePanel);
+
+    conciergeSend.addEventListener('click', () => sendMessage(conciergeInput.value));
+
+    conciergeInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage(conciergeInput.value);
+      }
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (isOpen && !conciergePanel.contains(e.target) && e.target !== conciergeBtn) {
+        togglePanel();
+      }
     });
   </script>
 </body>
