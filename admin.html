@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casanova Medicals — Physician Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #1B2B3A;
+      --paper:  #F7F4EE;
+      --sage:   #7A9B7E;
+      --amber:  #C2762E;
+      --ink:    #2C3E50;
+      --muted:  #718096;
+      --line:   #E2DDD7;
+      --danger: #9B3535;
+      --danger-bg: #FDF0F0;
+      --success-bg: #EEF5EF;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      background: #F0EDE7;
+      min-height: 100vh;
+    }
+
+    /* ── Login ── */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+      padding: 40px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 16px 48px rgba(27,43,58,0.14);
+    }
+
+    .login-card h1 {
+      font-size: 22px;
+      color: var(--navy);
+      margin: 0 0 6px;
+    }
+
+    .login-card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 28px;
+    }
+
+    .login-card label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .login-card input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 6px;
+      font-size: 15px;
+      outline: none;
+      margin-bottom: 20px;
+      transition: border-color 0.18s;
+    }
+
+    .login-card input:focus { border-color: var(--sage); }
+
+    .login-card button {
+      width: 100%;
+      padding: 12px;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+
+    .login-card button:hover { background: #253c4e; }
+
+    .login-error {
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-radius: 6px;
+      font-size: 13px;
+      display: none;
+    }
+
+    /* ── Dashboard ── */
+    #dashboard { display: none; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      min-height: 60px;
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .topbar-brand {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-right span {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    #logout-btn {
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 5px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+
+    #logout-btn:hover { background: rgba(255,255,255,0.18); }
+
+    .dash-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px 60px;
+    }
+
+    /* ── Stats row ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+
+    .stat-card .val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .stat-card .lbl {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--line);
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      background: none;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.18s, border-color 0.18s;
+    }
+
+    .tab-btn.active {
+      color: var(--navy);
+      border-bottom-color: var(--navy);
+    }
+
+    /* ── Queue ── */
+    .queue-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .queue-header h2 {
+      font-size: 17px;
+      color: var(--navy);
+      margin: 0;
+    }
+
+    #refresh-btn {
+      padding: 7px 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--ink);
+      transition: border-color 0.18s;
+    }
+
+    #refresh-btn:hover { border-color: var(--sage); }
+
+    .intake-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px 24px;
+      margin-bottom: 12px;
+      transition: box-shadow 0.2s;
+    }
+
+    .intake-card:hover { box-shadow: 0 4px 16px rgba(27,43,58,0.08); }
+
+    .intake-card.priority-priority { border-left: 4px solid var(--sage); }
+    .intake-card.priority-standard { border-left: 4px solid var(--amber); }
+    .intake-card.priority-general  { border-left: 4px solid var(--line); }
+
+    .intake-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .intake-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .intake-email {
+      font-size: 13px;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .intake-badges {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .badge {
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .badge-priority { background: rgba(122,155,126,0.15); color: #2a6b3e; }
+    .badge-standard { background: rgba(194,118,46,0.12); color: #8a5010; }
+    .badge-general  { background: rgba(27,43,58,0.08);   color: var(--navy); }
+    .badge-score    { background: var(--navy); color: #fff; }
+    .badge-approved { background: rgba(122,155,126,0.15); color: #2a6b3e; }
+    .badge-declined { background: rgba(155,53,53,0.12);   color: var(--danger); }
+    .badge-pending  { background: rgba(194,118,46,0.12); color: #8a5010; }
+
+    .intake-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .meta-item label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .meta-item span {
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .flags-box {
+      padding: 12px 14px;
+      background: #FAFAF8;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--ink);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .flags-box.empty { color: var(--muted); font-style: italic; }
+
+    .intake-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .action-btn {
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.18s;
+    }
+
+    .btn-approve {
+      background: var(--sage);
+      color: #fff;
+    }
+
+    .btn-approve:hover { background: #6a8a6e; }
+
+    .btn-decline {
+      background: transparent;
+      color: var(--danger);
+      border: 1.5px solid rgba(155,53,53,0.3);
+    }
+
+    .btn-decline:hover { background: var(--danger-bg); }
+
+    .care-path-select {
+      padding: 8px 12px;
+      border: 1.5px solid var(--line);
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .care-path-select:focus { border-color: var(--sage); }
+
+    .action-result {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 5px;
+    }
+
+    .action-result.approved { background: var(--success-bg); color: #2a6b3e; }
+    .action-result.declined { background: var(--danger-bg);  color: var(--danger); }
+
+    .intake-time {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    /* ── Checkins tab ── */
+    .checkin-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px 24px;
+      margin-bottom: 12px;
+    }
+
+    .checkin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .checkin-header h3 {
+      font-size: 16px;
+      color: var(--navy);
+      margin: 0;
+    }
+
+    .checkin-form {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .checkin-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .checkin-field input,
+    .checkin-field select {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1.5px solid var(--line);
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.18s;
+    }
+
+    .checkin-field input:focus,
+    .checkin-field select:focus { border-color: var(--sage); }
+
+    .btn-checkin {
+      padding: 9px 18px;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.18s;
+    }
+
+    .btn-checkin:hover { background: #253c4e; }
+
+    .checkin-history {
+      margin-top: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .checkin-history-row {
+      display: grid;
+      grid-template-columns: 60px repeat(4, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(226,221,215,0.5);
+      font-size: 13px;
+    }
+
+    .checkin-history-row .month-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .score-display {
+      text-align: center;
+      padding: 4px 8px;
+      background: var(--success-bg);
+      border-radius: 4px;
+      font-weight: 600;
+      color: #2a6b3e;
+      font-size: 13px;
+    }
+
+    /* ── Empty state ── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--muted);
+    }
+
+    .empty-state .icon { font-size: 36px; margin-bottom: 12px; }
+    .empty-state p { font-size: 15px; }
+
+    /* ── Loading ── */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+    }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transform: translateY(60px);
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast.success { background: #1a3a1a; color: #86efac; }
+    #toast.error   { background: #3a1a1a; color: #fca5a5; }
+  </style>
+</head>
+<body>
+
+  <!-- ── Login ── -->
+  <div id="login-screen">
+    <div class="login-card">
+      <h1>Casanova Medicals</h1>
+      <p>Physician Review Dashboard</p>
+      <label for="pwd-input">Access key</label>
+      <input type="password" id="pwd-input" placeholder="Enter access key" />
+      <button id="login-btn">Access dashboard</button>
+      <div class="login-error" id="login-error">Incorrect access key.</div>
+    </div>
+  </div>
+
+  <!-- ── Dashboard ── -->
+  <div id="dashboard">
+    <header class="topbar">
+      <span class="topbar-brand">CASANOVA MEDICALS · PHYSICIAN DASHBOARD</span>
+      <div class="topbar-right">
+        <span id="topbar-time"></span>
+        <button id="logout-btn">Sign out</button>
+      </div>
+    </header>
+
+    <div class="dash-body">
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="val" id="stat-total">—</div>
+          <div class="lbl">Total intakes</div>
+        </div>
+        <div class="stat-card">
+          <div class="val" id="stat-pending" style="color:var(--amber);">—</div>
+          <div class="lbl">Pending review</div>
+        </div>
+        <div class="stat-card">
+          <div class="val" id="stat-approved" style="color:var(--sage);">—</div>
+          <div class="lbl">Approved</div>
+        </div>
+        <div class="stat-card">
+          <div class="val" id="stat-subs">—</div>
+          <div class="lbl">Active subscriptions</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="queue">Review Queue</button>
+        <button class="tab-btn" data-tab="approved">Approved</button>
+        <button class="tab-btn" data-tab="checkins">Monthly Check-ins</button>
+      </div>
+
+      <!-- Queue tab -->
+      <div id="tab-queue">
+        <div class="queue-header">
+          <h2>Pending review — sorted by priority</h2>
+          <button id="refresh-btn">↻ Refresh</button>
+        </div>
+        <div id="queue-list"><div class="loading">Loading…</div></div>
+      </div>
+
+      <!-- Approved tab -->
+      <div id="tab-approved" style="display:none;">
+        <div class="queue-header">
+          <h2>Approved patients</h2>
+        </div>
+        <div id="approved-list"><div class="loading">Loading…</div></div>
+      </div>
+
+      <!-- Check-ins tab -->
+      <div id="tab-checkins" style="display:none;">
+        <div class="queue-header">
+          <h2>Monthly check-in entry</h2>
+        </div>
+        <div id="checkins-list"><div class="loading">Loading…</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <script>
+    // ── Config ──────────────────────────────────────────────────────────────
+    const SUPABASE_URL      = 'https://xwlpenfqnjspcwollygd.supabase.co';
+    const SUPABASE_ANON     = 'sb_publishable_iRoowWiDi4UG7kB2fRwZvw_nhWDTnw2';
+    const SUPABASE_SERVICE  = 'REPLACE_WITH_SERVICE_ROLE_KEY'; // needed to read intakes
+    const ADMIN_PASSWORD    = 'CasanovaPhysician2026';         // change this
+
+    // Use service role if set, else anon (anon can't read intakes due to RLS)
+    const API_KEY = SUPABASE_SERVICE.includes('REPLACE') ? SUPABASE_ANON : SUPABASE_SERVICE;
+
+    // ── Auth ─────────────────────────────────────────────────────────────────
+    const loginScreen = document.getElementById('login-screen');
+    const dashboard   = document.getElementById('dashboard');
+    const loginError  = document.getElementById('login-error');
+
+    function authed() { return sessionStorage.getItem('casanova_auth') === '1'; }
+    function showDash() {
+      loginScreen.style.display = 'none';
+      dashboard.style.display   = 'block';
+      initDashboard();
+    }
+
+    if (authed()) showDash();
+
+    document.getElementById('login-btn').addEventListener('click', () => {
+      const pwd = document.getElementById('pwd-input').value;
+      if (pwd === ADMIN_PASSWORD) {
+        sessionStorage.setItem('casanova_auth', '1');
+        loginError.style.display = 'none';
+        showDash();
+      } else {
+        loginError.style.display = 'block';
+      }
+    });
+
+    document.getElementById('pwd-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('login-btn').click();
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      sessionStorage.removeItem('casanova_auth');
+      location.reload();
+    });
+
+    // ── Time ─────────────────────────────────────────────────────────────────
+    function updateTime() {
+      document.getElementById('topbar-time').textContent =
+        new Date().toLocaleString('en-US', { timeZone: 'Asia/Bangkok', hour12: false,
+          year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }) + ' BKK';
+    }
+    updateTime(); setInterval(updateTime, 60000);
+
+    // ── Toast ────────────────────────────────────────────────────────────────
+    const toastEl = document.getElementById('toast');
+    let toastTimer;
+    function toast(msg, type = 'success') {
+      clearTimeout(toastTimer);
+      toastEl.textContent = msg;
+      toastEl.className = `show ${type}`;
+      toastTimer = setTimeout(() => toastEl.className = '', 3500);
+    }
+
+    // ── Supabase helpers ─────────────────────────────────────────────────────
+    async function sbFetch(path, opts = {}) {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+        ...opts,
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': API_KEY,
+          'Authorization': `Bearer ${API_KEY}`,
+          'Prefer': 'return=representation',
+          ...(opts.headers || {}),
+        },
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || `HTTP ${res.status}`);
+      }
+      const text = await res.text();
+      return text ? JSON.parse(text) : null;
+    }
+
+    // ── State ────────────────────────────────────────────────────────────────
+    let allIntakes = [];
+    let allSubs    = [];
+    let allCheckins = [];
+
+    // ── Priority sort ────────────────────────────────────────────────────────
+    const PRIORITY_ORDER = { priority: 0, standard: 1, general: 2, low: 3 };
+
+    function sortByPriority(intakes) {
+      return [...intakes].sort((a, b) => {
+        const pa = PRIORITY_ORDER[a.priority] ?? 9;
+        const pb = PRIORITY_ORDER[b.priority] ?? 9;
+        if (pa !== pb) return pa - pb;
+        return new Date(a.created_at) - new Date(b.created_at);
+      });
+    }
+
+    // ── Init ─────────────────────────────────────────────────────────────────
+    async function initDashboard() {
+      await loadAll();
+    }
+
+    async function loadAll() {
+      try {
+        allIntakes  = await sbFetch('intakes?order=created_at.desc&limit=200') || [];
+        allSubs     = await sbFetch('cpp_subscriptions?order=started_at.desc&limit=200') || [];
+        allCheckins = await sbFetch('monthly_checkins?order=recorded_at.desc&limit=500') || [];
+      } catch (e) {
+        console.error('Load error:', e);
+        if (e.message.includes('relation') || e.message.includes('does not exist')) {
+          toast('Run the SQL schema update in Supabase first.', 'error');
+        } else {
+          toast('Load error — check Supabase credentials.', 'error');
+        }
+        allIntakes = []; allSubs = []; allCheckins = [];
+      }
+      renderStats();
+      renderQueue();
+      renderApproved();
+      renderCheckins();
+    }
+
+    document.getElementById('refresh-btn').addEventListener('click', loadAll);
+
+    // ── Stats ────────────────────────────────────────────────────────────────
+    function renderStats() {
+      document.getElementById('stat-total').textContent    = allIntakes.length;
+      document.getElementById('stat-pending').textContent  = allIntakes.filter(i => i.clinician_status === 'pending_review').length;
+      document.getElementById('stat-approved').textContent = allIntakes.filter(i => i.clinician_status === 'approved').length;
+      document.getElementById('stat-subs').textContent     = allSubs.filter(s => s.status === 'active').length;
+    }
+
+    // ── Format helpers ───────────────────────────────────────────────────────
+    function timeAgo(iso) {
+      const diff = Date.now() - new Date(iso);
+      const h    = Math.floor(diff / 3600000);
+      if (h < 1)  return `${Math.floor(diff / 60000)}m ago`;
+      if (h < 24) return `${h}h ago`;
+      return `${Math.floor(h / 24)}d ago`;
+    }
+
+    function goalLabel(g) {
+      return { metabolic: 'Metabolic', recovery: 'Recovery', longevity: 'Longevity',
+               'in-country': 'In-Country Program', unsure: 'Not sure yet' }[g] || g || '—';
+    }
+
+    function priorityBadge(p) {
+      const map = { priority: 'Priority', standard: 'Standard', general: 'General', low: 'General' };
+      return `<span class="badge badge-${p === 'low' ? 'general' : p}">${map[p] || p}</span>`;
+    }
+
+    // ── Queue ────────────────────────────────────────────────────────────────
+    function renderQueue() {
+      const pending = sortByPriority(allIntakes.filter(i => i.clinician_status === 'pending_review'));
+      const el      = document.getElementById('queue-list');
+
+      if (!pending.length) {
+        el.innerHTML = `<div class="empty-state"><div class="icon">✓</div><p>No pending reviews — all caught up.</p></div>`;
+        return;
+      }
+
+      el.innerHTML = pending.map(i => intakeCard(i, true)).join('');
+      attachCardListeners(el, true);
+    }
+
+    // ── Approved list ────────────────────────────────────────────────────────
+    function renderApproved() {
+      const approved = allIntakes.filter(i => i.clinician_status !== 'pending_review');
+      const el       = document.getElementById('approved-list');
+
+      if (!approved.length) {
+        el.innerHTML = `<div class="empty-state"><div class="icon">📋</div><p>No reviewed intakes yet.</p></div>`;
+        return;
+      }
+
+      el.innerHTML = approved.map(i => intakeCard(i, false)).join('');
+    }
+
+    function intakeCard(i, withActions) {
+      const statusBadge = i.clinician_status === 'approved'     ? `<span class="badge badge-approved">Approved</span>`
+                        : i.clinician_status === 'not_approved' ? `<span class="badge badge-declined">Declined</span>`
+                        : `<span class="badge badge-pending">Pending</span>`;
+      return `
+        <div class="intake-card priority-${i.priority}" data-id="${i.id}">
+          <div class="intake-top">
+            <div>
+              <div class="intake-name">${esc(i.name || 'No name')}</div>
+              <div class="intake-email">${esc(i.email)}</div>
+            </div>
+            <div class="intake-badges">
+              ${priorityBadge(i.priority)}
+              <span class="badge badge-score">Score ${i.score ?? '?'}</span>
+              ${statusBadge}
+              <span class="intake-time">${timeAgo(i.created_at)}</span>
+            </div>
+          </div>
+          <div class="intake-meta">
+            <div class="meta-item"><label>Goal</label><span>${goalLabel(i.goal)}</span></div>
+            <div class="meta-item"><label>Med history</label><span>${esc(i.med_history || '—')}</span></div>
+            <div class="meta-item"><label>Submitted</label><span>${new Date(i.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}</span></div>
+          </div>
+          <div class="flags-box ${i.flags ? '' : 'empty'}">${esc(i.flags || 'No additional notes provided.')}</div>
+          ${withActions ? `
+            <div class="intake-actions">
+              <select class="care-path-select" data-id="${i.id}">
+                <option value="">Assign care path…</option>
+                <option value="A">Protocol A (AM Metabolic)</option>
+                <option value="B">Protocol B (PM Recovery)</option>
+                <option value="A+B">Protocol A + B (Full)</option>
+                <option value="in-country-reset">In-Country: The Reset</option>
+                <option value="in-country-restore">In-Country: The Restore</option>
+                <option value="in-country-renew">In-Country: The Renew</option>
+              </select>
+              <button class="action-btn btn-approve" data-id="${i.id}">✓ Approve</button>
+              <button class="action-btn btn-decline" data-id="${i.id}">✗ Decline</button>
+            </div>
+          ` : ''}
+        </div>`;
+    }
+
+    function attachCardListeners(container, withActions) {
+      if (!withActions) return;
+      container.querySelectorAll('.btn-approve').forEach(btn => {
+        btn.addEventListener('click', () => handleDecision(btn.dataset.id, 'approved'));
+      });
+      container.querySelectorAll('.btn-decline').forEach(btn => {
+        btn.addEventListener('click', () => handleDecision(btn.dataset.id, 'not_approved'));
+      });
+    }
+
+    async function handleDecision(id, decision) {
+      const card        = document.querySelector(`.intake-card[data-id="${id}"]`);
+      const carePathEl  = card?.querySelector(`.care-path-select`);
+      const carePath    = carePathEl?.value || null;
+
+      if (decision === 'approved' && !carePath) {
+        toast('Please assign a care path before approving.', 'error'); return;
+      }
+
+      const approveBtn  = card?.querySelector('.btn-approve');
+      const declineBtn  = card?.querySelector('.btn-decline');
+      if (approveBtn) approveBtn.disabled = true;
+      if (declineBtn) declineBtn.disabled = true;
+
+      try {
+        await sbFetch(`intakes?id=eq.${id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({
+            clinician_status:  decision,
+            assigned_care_path: carePath,
+            reviewed_at:       new Date().toISOString(),
+          }),
+        });
+
+        // If approved + CPP path, create subscription record
+        if (decision === 'approved' && ['A','B','A+B'].includes(carePath)) {
+          const intake = allIntakes.find(i => String(i.id) === String(id));
+          if (intake) {
+            await sbFetch('cpp_subscriptions', {
+              method: 'POST',
+              body: JSON.stringify({
+                intake_id: intake.id,
+                email:     intake.email,
+                protocol:  carePath,
+                status:    'active',
+              }),
+            });
+          }
+        }
+
+        toast(decision === 'approved' ? '✓ Patient approved' : 'Patient declined', decision === 'approved' ? 'success' : 'error');
+        await loadAll();
+      } catch (e) {
+        toast(`Error: ${e.message}`, 'error');
+        if (approveBtn) approveBtn.disabled = false;
+        if (declineBtn) declineBtn.disabled = false;
+      }
+    }
+
+    // ── Check-ins ────────────────────────────────────────────────────────────
+    function renderCheckins() {
+      const activeSubs = allSubs.filter(s => s.status === 'active');
+      const el         = document.getElementById('checkins-list');
+
+      if (!activeSubs.length) {
+        el.innerHTML = `<div class="empty-state"><div class="icon">📊</div><p>No active subscriptions yet. Approve a patient to start tracking.</p></div>`;
+        return;
+      }
+
+      el.innerHTML = activeSubs.map(sub => {
+        const intake   = allIntakes.find(i => i.id === sub.intake_id) || {};
+        const history  = allCheckins.filter(c => c.subscription_id === sub.id)
+                           .sort((a,b) => a.month_number - b.month_number);
+        const nextMonth = (history[history.length - 1]?.month_number ?? 0) + 1;
+
+        return `
+          <div class="checkin-card" data-sub="${sub.id}">
+            <div class="checkin-header">
+              <h3>${esc(intake.name || intake.email || '—')} — Protocol ${esc(sub.protocol)}</h3>
+              <span class="badge badge-approved">Active · Month ${nextMonth - 1 || 0} done</span>
+            </div>
+            <div class="checkin-form">
+              <div class="checkin-field">
+                <label>Month #</label>
+                <input type="number" min="1" value="${nextMonth}" class="ci-month" />
+              </div>
+              <div class="checkin-field">
+                <label>Adherence %</label>
+                <input type="number" min="0" max="100" placeholder="0–100" class="ci-adhere" />
+              </div>
+              <div class="checkin-field">
+                <label>Energy (1–5)</label>
+                <input type="number" min="1" max="5" placeholder="1–5" class="ci-energy" />
+              </div>
+              <div class="checkin-field">
+                <label>Sleep (1–5)</label>
+                <input type="number" min="1" max="5" placeholder="1–5" class="ci-sleep" />
+              </div>
+              <div class="checkin-field">
+                <label>Goal progress (1–5)</label>
+                <input type="number" min="1" max="5" placeholder="1–5" class="ci-goal" />
+              </div>
+              <button class="btn-checkin" data-sub="${sub.id}">Save check-in</button>
+            </div>
+            ${history.length ? `
+              <div class="checkin-history">
+                <div class="checkin-history-row" style="font-weight:700;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;">
+                  <span>Month</span><span>Adherence</span><span>Energy</span><span>Sleep</span><span>Goal</span><span>Recorded</span>
+                </div>
+                ${history.map(c => `
+                  <div class="checkin-history-row">
+                    <span class="month-label">M${c.month_number}</span>
+                    <span><span class="score-display">${c.adherence_pct ?? '—'}%</span></span>
+                    <span><span class="score-display">${c.energy_score ?? '—'}/5</span></span>
+                    <span><span class="score-display">${c.sleep_score ?? '—'}/5</span></span>
+                    <span><span class="score-display">${c.goal_progress ?? '—'}/5</span></span>
+                    <span style="font-size:11px;color:var(--muted)">${new Date(c.recorded_at).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</span>
+                  </div>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>`;
+      }).join('');
+
+      el.querySelectorAll('.btn-checkin').forEach(btn => {
+        btn.addEventListener('click', () => saveCheckin(btn.dataset.sub, btn.closest('.checkin-card')));
+      });
+    }
+
+    async function saveCheckin(subId, card) {
+      const month  = parseInt(card.querySelector('.ci-month').value);
+      const adhere = parseInt(card.querySelector('.ci-adhere').value);
+      const energy = parseInt(card.querySelector('.ci-energy').value);
+      const sleep  = parseInt(card.querySelector('.ci-sleep').value);
+      const goal   = parseInt(card.querySelector('.ci-goal').value);
+
+      if ([month, adhere, energy, sleep, goal].some(isNaN)) {
+        toast('Fill in all check-in fields.', 'error'); return;
+      }
+
+      try {
+        await sbFetch('monthly_checkins', {
+          method: 'POST',
+          body: JSON.stringify({
+            subscription_id: parseInt(subId),
+            month_number:    month,
+            adherence_pct:   adhere,
+            energy_score:    energy,
+            sleep_score:     sleep,
+            goal_progress:   goal,
+          }),
+        });
+        toast(`✓ Month ${month} check-in saved`);
+        await loadAll();
+      } catch (e) {
+        toast(`Error: ${e.message}`, 'error');
+      }
+    }
+
+    // ── Tabs ─────────────────────────────────────────────────────────────────
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        ['queue','approved','checkins'].forEach(t => {
+          document.getElementById(`tab-${t}`).style.display = btn.dataset.tab === t ? '' : 'none';
+        });
+      });
+    });
+
+    // ── Utils ────────────────────────────────────────────────────────────────
+    function esc(s) {
+      return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+  </script>
+</body>
+</html>
