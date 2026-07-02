@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casanova Medicals | White Label Partnership Program</title>
+  <meta name="description" content="A white-label international clinical access program for concierge, functional, longevity, DPC, and executive health practices." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:    #1B2B3A;
+      --paper:   #F7F4EE;
+      --sage:    #7A9B7E;
+      --amber:   #C2762E;
+      --ink:     #2C3E50;
+      --ink-soft:#4A5568;
+      --muted:   #718096;
+      --line:    #E2DDD7;
+      --panel:   #FFFFFF;
+      --wash:    #EEF5EF;
+      --danger:  #9B3535;
+      --danger-bg:#FDF0F0;
+      --shadow-sm: 0 2px 8px rgba(27,43,58,0.08);
+      --shadow:    0 12px 40px rgba(27,43,58,0.12);
+      --shadow-lg: 0 24px 60px rgba(27,43,58,0.16);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 600;
+      line-height: 1.08;
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    p { margin-top: 0; }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; }
+
+    .mono { font-family: 'IBM Plex Mono', monospace; }
+
+    /* ── Topbar ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      padding: 0 48px;
+      background: rgba(247, 244, 238, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(226, 221, 215, 0.8);
+    }
+
+    .brand {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
+      text-decoration: none;
+    }
+
+    .brand strong {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .brand em {
+      font-style: normal;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav a {
+      color: var(--ink-soft);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+
+    .nav a:hover { color: var(--navy); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 22px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: #253c4e; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid var(--navy);
+    }
+
+    .btn-outline:hover { background: var(--navy); color: #fff; }
+
+    .btn-sage {
+      background: var(--sage);
+      color: #fff;
+    }
+
+    .btn-sage:hover { background: #6a8a6e; transform: translateY(-1px); }
+
+    .btn-amber {
+      background: var(--amber);
+      color: #fff;
+    }
+
+    .btn-amber:hover { background: #b06a27; transform: translateY(-1px); }
+
+    /* ── Layout ── */
+    .inner {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+    }
+
+    .band {
+      padding: 96px 48px;
+    }
+
+    .band-sm { padding: 64px 48px; }
+    .band-xs { padding: 40px 48px; }
+
+    .band-white { background: #fff; }
+    .band-navy  { background: var(--navy); color: #fff; }
+    .band-wash  { background: var(--wash); }
+    .band-paper { background: var(--paper); }
+
+    .band-white h2,
+    .band-wash h2  { color: var(--navy); }
+    .band-navy h2  { color: #fff; }
+    .band-navy h3  { color: #fff; }
+    .band-navy p   { color: rgba(255,255,255,0.75); }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1.5px;
+      background: var(--amber);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 48px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, rgba(247,244,238,0.98) 0%, rgba(247,244,238,0.92) 42%, rgba(247,244,238,0.55) 68%, rgba(247,244,238,0.12) 100%),
+        url("assets/protocol-hero.png") center right / cover no-repeat;
+      z-index: 0;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, 100%);
+      margin: 0 auto;
+    }
+
+    .hero-copy { max-width: 680px; }
+
+    h1 {
+      font-size: clamp(44px, 6vw, 82px);
+      margin-bottom: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-lede {
+      font-size: 20px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 36px;
+      max-width: 580px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    .trust-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.75);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      margin-right: -1px;
+    }
+
+    .trust-pill:first-child { border-radius: 6px 0 0 6px; }
+    .trust-pill:last-child  { border-radius: 0 6px 6px 0; margin-right: 0; }
+
+    .trust-pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+      flex-shrink: 0;
+    }
+
+    /* ── Slogan ── */
+    .slogan-band {
+      background: var(--navy);
+      padding: 28px 48px;
+    }
+
+    .slogan-inner {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .slogan {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+    }
+
+    .slogan strong {
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+    }
+
+    /* ── Programs ── */
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .program-card {
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .program-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .program-card.featured {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 2px var(--sage), var(--shadow);
+    }
+
+    .program-tier {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 12px;
+    }
+
+    .program-card h3 {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .program-duration {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .program-fee {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .program-fee-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .program-includes {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 auto;
+      display: grid;
+      gap: 10px;
+    }
+
+    .program-includes li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .program-includes li::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      min-width: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      margin-top: 7px;
+    }
+
+    .program-cta {
+      margin-top: 28px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .program-allin {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* ── How it works ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .step {
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .step-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--sage);
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 0;
+    }
+
+    /* ── CPP section ── */
+    .cpp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .cpp-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .cpp-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: rgba(122,155,126,0.12);
+      color: var(--sage);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .cpp-card h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .cpp-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .cpp-ingredient-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 7px;
+    }
+
+    .cpp-ingredient-list li {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .cpp-ingredient-list li::before {
+      content: '—';
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    /* ── Partners ── */
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .partner-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .partner-country {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .partner-card h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .partner-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    /* ── Origin ── */
+    .origin-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 44px;
+    }
+
+    .origin-card {
+      padding: 28px;
+      border-top: 3px solid var(--amber);
+      background: #fff;
+      border-radius: 0 0 8px 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .origin-card h4 {
+      font-size: 19px;
+      margin-bottom: 14px;
+    }
+
+    .origin-card p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    /* ── Emergency ── */
+    .emergency-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 36px;
+      align-items: start;
+    }
+
+    .emergency-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .emergency-steps li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .emergency-step-num {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 50%;
+      background: var(--sage);
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .emergency-steps li > div {
+      padding-top: 4px;
+    }
+
+    .emergency-steps li h5 {
+      font-size: 15px;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .emergency-steps li p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .emergency-panel {
+      padding: 28px;
+      background: var(--navy);
+      border-radius: 10px;
+      color: #fff;
+    }
+
+    .emergency-panel h4 {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .emergency-panel p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .emergency-contact {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--sage);
+      font-weight: 600;
+    }
+
+    /* ── Intake ── */
+    .intake-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .intake-copy h2 {
+      font-size: clamp(34px, 4.5vw, 54px);
+      margin-bottom: 16px;
+    }
+
+    .intake-copy p {
+      font-size: 16px;
+      color: var(--ink-soft);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .metrics-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .metric-card {
+      padding: 18px;
+      border-radius: 8px;
+      background: var(--wash);
+    }
+
+    .metric-card strong {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .metric-card span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .intake-trust {
+      display: grid;
+      gap: 8px;
+    }
+
+    .intake-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    .intake-trust-item .check {
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      border-radius: 50%;
+      background: var(--sage);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Form ── */
+    .intake-form-wrap {
+      padding: 36px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    form { display: grid; gap: 16px; }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+    }
+
+    input[type="text"], input[type="email"], input[type="tel"],
+    select, textarea {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1.5px solid var(--line);
+      border-radius: 6px;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+      font-size: 15px;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      min-height: 46px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(122,155,126,0.15);
+    }
+
+    textarea { min-height: 100px; resize: vertical; }
+
+    .consent-row {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .consent-row input {
+      width: 18px;
+      height: 18px;
+      min-height: 0;
+      margin-top: 2px;
+      accent-color: var(--sage);
+    }
+
+    .consent-row span {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .form-score-display {
+      display: none;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid;
+    }
+
+    .form-score-display.visible { display: block; }
+    .form-score-display.priority {
+      background: rgba(122,155,126,0.1);
+      border-color: rgba(122,155,126,0.3);
+      color: #2a6b3e;
+    }
+    .form-score-display.standard {
+      background: rgba(194,118,46,0.08);
+      border-color: rgba(194,118,46,0.25);
+      color: #8a5010;
+    }
+    .form-score-display.general {
+      background: rgba(27,43,58,0.06);
+      border-color: rgba(27,43,58,0.15);
+      color: var(--navy);
+    }
+
+    .score-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .score-message {
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* ── FAQ ── */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .faq-item {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .faq-item h4 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .faq-item p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    /* ── Disclaimer ── */
+    .disclaimer-band {
+      background: var(--navy);
+      padding: 24px 48px;
+    }
+
+    .disclaimer-inner {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+    }
+
+    .disclaimer-inner p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      margin-bottom: 0;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #0f1e2b;
+      padding: 56px 48px 32px;
+    }
+
+    .footer-grid {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand strong {
+      display: block;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .footer-col h5 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.18s;
+    }
+
+    .footer-col a:hover { color: #fff; }
+
+    .footer-bottom {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ── Concierge widget ── */
+    #concierge-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 1000;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(27,43,58,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    #concierge-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 32px rgba(27,43,58,0.45);
+    }
+
+    #concierge-panel {
+      position: fixed;
+      bottom: 96px;
+      right: 28px;
+      z-index: 1000;
+      width: 360px;
+      max-height: 520px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 24px 60px rgba(27,43,58,0.22);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.92) translateY(12px);
+      transform-origin: bottom right;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    #concierge-panel.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .concierge-header {
+      padding: 16px 20px;
+      background: var(--navy);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .concierge-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .concierge-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .concierge-header-text strong {
+      display: block;
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 1px;
+    }
+
+    .concierge-header-text span {
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    #concierge-close {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      font-size: 20px;
+      padding: 4px;
+      line-height: 1;
+      transition: color 0.18s;
+    }
+
+    #concierge-close:hover { color: #fff; }
+
+    #concierge-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .msg {
+      max-width: 86%;
+      padding: 10px 13px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .msg-assistant {
+      background: var(--wash);
+      color: var(--ink);
+      border-radius: 2px 10px 10px 10px;
+      align-self: start;
+    }
+
+    .msg-user {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 10px 2px 10px 10px;
+      align-self: end;
+      margin-left: auto;
+    }
+
+    .msg-typing {
+      display: flex;
+      gap: 4px;
+      padding: 12px 16px;
+    }
+
+    .msg-typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+      animation: bounce 1.2s infinite;
+    }
+
+    .msg-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .msg-typing span:nth-child(3) { animation-delay: 0.3s;  }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+      40% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    .concierge-input-row {
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    #concierge-input {
+      flex: 1;
+      padding: 9px 12px;
+      border: 1.5px solid var(--line);
+      border-radius: 20px;
+      font-size: 14px;
+      outline: none;
+      color: var(--ink);
+      min-height: 0;
+      resize: none;
+      background: #fff;
+      transition: border-color 0.18s;
+    }
+
+    #concierge-input:focus { border-color: var(--sage); }
+
+    #concierge-send {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      transition: background 0.18s;
+    }
+
+    #concierge-send:hover { background: #253c4e; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .topbar { padding: 0 28px; }
+      .nav a:not(.btn-primary) { display: none; }
+      .band { padding-left: 28px; padding-right: 28px; }
+      .band-sm { padding-left: 28px; padding-right: 28px; }
+      .band-xs { padding-left: 28px; padding-right: 28px; }
+      .slogan-band, .disclaimer-band { padding-left: 28px; padding-right: 28px; }
+      .hero { padding-left: 28px; padding-right: 28px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .program-grid, .steps-grid, .cpp-grid, .partners-grid,
+      .origin-grid, .emergency-grid, .intake-wrap { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
+      .metrics-2 { grid-template-columns: 1fr 1fr; }
+      .trust-strip { flex-direction: column; }
+      .trust-pill { border-radius: 6px !important; margin-right: 0; margin-bottom: -1px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      footer { padding: 40px 24px 24px; }
+      .slogan-inner { flex-direction: column; align-items: flex-start; }
+      #concierge-panel { width: calc(100vw - 32px); right: 16px; bottom: 88px; }
+    }
+  </style>
+  <style>
+    .partner-hero { min-height: 74vh; display:flex; align-items:center; padding: 92px 48px; background: linear-gradient(105deg, rgba(247,244,238,.98), rgba(238,245,239,.92)); }
+    .partner-hero h1 { max-width: 840px; }
+    .partner-lede { max-width: 720px; font-size:20px; color:var(--ink-soft); line-height:1.75; }
+    .metric-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-top:38px; }
+    .metric { background:#fff; border:1px solid var(--line); border-radius:8px; padding:20px; }
+    .metric strong { display:block; font-size:26px; color:var(--navy); margin-bottom:4px; }
+    .fit-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:34px; }
+    .fit { background:#fff; border:1px solid var(--line); border-radius:8px; padding:24px; }
+    .fit h3 { font-size:22px; margin-bottom:10px; }
+    .process { counter-reset: step; display:grid; gap:14px; margin-top:34px; }
+    .process li { list-style:none; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:8px; padding:20px; color:rgba(255,255,255,.72); }
+    .process li::before { counter-increment: step; content: counter(step, decimal-leading-zero); display:block; font-family:'IBM Plex Mono',monospace; color:var(--sage); margin-bottom:8px; }
+    .warning { background:var(--danger-bg); border:1px solid rgba(155,53,53,.18); color:var(--danger); border-radius:8px; padding:18px; font-size:14px; }
+    @media(max-width:900px){.metric-row,.fit-grid{grid-template-columns:1fr}.partner-hero{padding:64px 24px}}
+  </style>
+</head>
+<body id="top">
+  <header class="topbar">
+    <a class="brand" href="index.html"><strong>Casanova Medicals</strong><em>International Access Platform</em></a>
+    <nav class="nav">
+      <a href="index.html#programs">Programs</a>
+      <a href="index.html#protocol">Protocol</a>
+      <a href="index.html#intake">Patient Intake</a>
+      <a class="btn btn-primary" href="mailto:sonny@casanovamed.com?subject=Casanova%20White%20Label%20Partnership">Partner call</a>
+    </nav>
+  </header>
+  <section class="partner-hero">
+    <div class="inner">
+      <div class="section-label">White label partnership</div>
+      <h1>Offer your patients international access without building the infrastructure yourself.</h1>
+      <p class="partner-lede">Casanova operates behind your practice: physician-reviewed intake, Southeast Asia care coordination, emergency infrastructure, return care plans, and longitudinal outcomes intelligence.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:sonny@casanovamed.com?subject=Casanova%20White%20Label%20Partnership">Book a 20-minute partner call</a>
+        <a class="btn btn-outline" href="#model">See the model</a>
+      </div>
+      <div class="metric-row">
+        <div class="metric"><strong>47%</strong><span>Americans report healthcare is unaffordable.</span></div>
+        <div class="metric"><strong>10-25x</strong><span>Potential cost gap on selected diagnostics and therapies.</span></div>
+        <div class="metric"><strong>24 hr</strong><span>In-country coordinator and emergency pathway.</span></div>
+        <div class="metric"><strong>IRB</strong><span>De-identified longitudinal outcomes data pathway.</span></div>
+      </div>
+    </div>
+  </section>
+  <section class="band band-white" id="model">
+    <div class="inner">
+      <div class="section-label">The model</div>
+      <h2>Your brand in front. Casanova infrastructure behind it.</h2>
+      <div class="program-grid">
+        <article class="program-card"><div class="program-tier">Your practice offers</div><h3>International access program</h3><ul class="program-includes"><li>Clinical appropriateness intake</li><li>Advanced therapy navigation</li><li>Patient-facing materials under your brand</li><li>Return care plan delivered back to your team</li></ul></article>
+        <article class="program-card featured"><div class="program-tier">Casanova handles</div><h3>Ground operation</h3><ul class="program-includes"><li>Physician review and oversight</li><li>Hospital and specialist coordination</li><li>Accommodation, scheduling, daily support</li><li>Emergency registration and coordinator coverage</li></ul></article>
+        <article class="program-card"><div class="program-tier">You receive</div><h3>Revenue and intelligence</h3><ul class="program-includes"><li>Referral economics on completed programs</li><li>Quarterly emerging-therapy briefings</li><li>Aggregated outcomes from referred patients</li><li>Founding partner practice recognition</li></ul></article>
+      </div>
+    </div>
+  </section>
+  <section class="band band-wash">
+    <div class="inner">
+      <div class="section-label">Best-fit practices</div>
+      <h2>Built for practices whose patients are already asking.</h2>
+      <div class="fit-grid">
+        <div class="fit"><h3>Concierge women's health</h3><p>Affluent, informed women 40+ asking about regenerative, longevity, and advanced prevention options.</p></div>
+        <div class="fit"><h3>Longevity and hormone clinics</h3><p>Patients already tracking NAD+, plasmapheresis, exosomes, stem cells, and international options.</p></div>
+        <div class="fit"><h3>Functional and DPC practices</h3><p>Patients who pay out of pocket because they want more than standard system throughput.</p></div>
+        <div class="fit"><h3>Executive health centers</h3><p>High-intent patients who value time, privacy, physician access, and full coordination.</p></div>
+        <div class="fit"><h3>Chronic pain and PT</h3><p>Frustrated patients who need imaging, specialist access, and daily therapeutic support quickly.</p></div>
+        <div class="fit"><h3>Integrative practices</h3><p>Clinicians philosophically aligned with therapies discussed domestically but delivered abroad.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="band band-navy">
+    <div class="inner">
+      <div class="section-label">Patient flow</div>
+      <h2>From referral to return care plan.</h2>
+      <ol class="process">
+        <li>Practice introduces the branded international access program to a qualified patient.</li>
+        <li>Casanova conducts physician-reviewed intake and clinical appropriateness assessment.</li>
+        <li>The patient receives a coordinated Southeast Asia program: institution, schedule, support, emergency protocol.</li>
+        <li>Casanova manages in-country communication, logistics, documentation, and follow-up.</li>
+        <li>Your practice receives a return care plan and de-identified aggregated intelligence over time.</li>
+      </ol>
+    </div>
+  </section>
+  <section class="band band-white">
+    <div class="inner">
+      <div class="section-label">Clinical posture</div>
+      <h2>Access and navigation, not offshore prescribing.</h2>
+      <p style="max-width:760px;color:var(--ink-soft);font-size:18px;">Casanova informs, navigates, coordinates, and oversees access through licensed pharmacies, accredited hospitals, and physician-supervised programs. Your practice does not prescribe internationally. Casanova does not prescribe.</p>
+      <div class="warning">This page is partnership information only. Medical decisions remain with licensed clinicians and accredited institutions in the relevant jurisdiction.</div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand"><strong>Casanova Medicals</strong><p>The international access platform for patients and practices ready for clinically governed options abroad.</p></div>
+      <div class="footer-col"><h5>Program</h5><a href="index.html#programs">Patient programs</a><a href="index.html#protocol">CPP protocol</a></div>
+      <div class="footer-col"><h5>Partnership</h5><a href="mailto:sonny@casanovamed.com">sonny@casanovamed.com</a><a href="#model">White label model</a></div>
+      <div class="footer-col"><h5>Start</h5><a href="index.html#intake">Patient intake</a><a href="mailto:sonny@casanovamed.com?subject=Casanova%20White%20Label%20Partnership">Partner call</a></div>
+    </div>
+  </footer>
+</body>
+</html>
