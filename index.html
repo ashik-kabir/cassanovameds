@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Casanova Medicals | Medical Navigation · Southeast Asia</title>
-  <meta name="description" content="Clinician-reviewed medical navigation for Americans 55+ who want world-class care at Bumrungrad, RAKxa, and partner institutions across Thailand, Vietnam, and Malaysia." />
+  <meta name="description" content="Clinician-reviewed medical navigation for Americans 40+ who want world-class care at Bumrungrad, RAKxa, and partner institutions across Thailand, Vietnam, and Malaysia." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -1205,7 +1205,7 @@
         <p class="section-label">Medical Navigation · Thailand · Vietnam · Malaysia</p>
         <h1>You have outgrown what American medicine is willing to offer.</h1>
         <p class="hero-lede">
-          Casanova Medicals navigates Americans 55+ through world-class care at Bumrungrad, RAKxa, Kamalaya, and partner institutions across Southeast Asia — with someone who actually knows the system, the hospitals, and how to get you home safely.
+          Casanova Medicals navigates Americans 40+ through world-class care at Bumrungrad, RAKxa, Kamalaya, and partner institutions across Southeast Asia — with someone who actually knows the system, the hospitals, and how to get you home safely.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#intake">Start free eligibility check</a>
@@ -1285,6 +1285,7 @@
             <li>Everything in The Reset</li>
             <li>Full longevity panel: epigenetic age, telomere, hormones, microbiome, DEXA</li>
             <li>NAD+ IV therapy (5–10 sessions)</li>
+            <li>EBOO (Extracorporeal Blood Oxygenation and Ozonation) — complimentary, included in this program</li>
             <li>Exosomes + peptide therapy</li>
             <li>1 day at RAKxa, Kamalaya, or Chiva-Som</li>
             <li>Premium serviced apartment</li>
@@ -1308,6 +1309,7 @@
             <li>Everything in The Reset + The Restore</li>
             <li>Stem cell therapy (cultured/expanded)</li>
             <li>Plasmapheresis + xenon gas</li>
+            <li>EBOO (Extracorporeal Blood Oxygenation and Ozonation) — included</li>
             <li>NK-cell expansion or CAR-NK engineered immune cells</li>
             <li>5–7 night stay at premium wellness retreat</li>
             <li>Private villa accommodation</li>
@@ -1666,11 +1668,11 @@
               Primary goal
               <select name="goal" required>
                 <option value="">Select one</option>
+                <option value="unsure">Not sure yet — want a consultation</option>
                 <option value="metabolic">Metabolic health</option>
                 <option value="recovery">Recovery and sleep quality</option>
                 <option value="longevity">Longevity and preventive care</option>
                 <option value="in-country">In-country program (The Reset / Restore / Renew)</option>
-                <option value="unsure">Not sure yet — want a consultation</option>
               </select>
             </label>
 
@@ -1695,6 +1697,24 @@
           </form>
         </div>
       </div>
+    </div>
+  </section>
+
+
+
+  <!-- ── Casanova Cares ── -->
+  <section class="band band-paper" id="cares">
+    <div class="inner">
+      <p class="section-label">Casanova Cares</p>
+      <h2 style="font-size:clamp(34px,4vw,54px); max-width:620px; margin-bottom:12px;">
+        Access should not stop at ability to pay.
+      </h2>
+      <p style="font-size:17px; color:var(--ink-soft); max-width:760px; line-height:1.8;">
+        A percentage of every program funds navigation access for patients who need it and cannot afford it. The gap Casanova exists to close — between what is available in Bangkok and what Americans can access at home — should not only be available to those who can pay full price. Casanova Cares is our commitment to making sure it isn’t.
+      </p>
+      <p style="font-size:16px; color:var(--ink-soft); max-width:720px; line-height:1.75; margin-bottom:0;">
+        If you or someone you know needs support accessing care and financial constraints are a barrier, contact us directly at <a href="mailto:care@casanovamed.com">care@casanovamed.com</a>.
+      </p>
     </div>
   </section>
 
@@ -1753,7 +1773,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <strong>Casanova Medicals</strong>
-        <p>Medical navigation and patient advocacy for Americans 55+ seeking world-class care in Southeast Asia.</p>
+        <p>Medical navigation and patient advocacy for Americans 40+ seeking world-class care in Southeast Asia.</p>
         <a class="btn btn-outline" style="border-color:rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); width:fit-content;" href="#intake">Start free check</a>
       </div>
       <div class="footer-col">
@@ -1899,7 +1919,7 @@
     let history = [];
     let isOpen  = false;
 
-    const SYSTEM_PROMPT = `You are the Casanova Medicals concierge. Casanova Medicals is a medical navigation and patient advocacy company that helps Americans 55+ access world-class care at partner hospitals and wellness retreats in Thailand, Vietnam, and Malaysia. You are warm, knowledgeable, and non-judgmental.
+    const SYSTEM_PROMPT = `You are the Casanova Medicals concierge. Casanova Medicals is a medical navigation and patient advocacy company that helps Americans 40+ access world-class care at partner hospitals and wellness retreats in Thailand, Vietnam, and Malaysia. You are warm, knowledgeable, and non-judgmental.
 
 You can answer questions about:
 - The three in-country programs: The Reset ($4,500 coordination fee, 10-14 days), The Restore ($9,500, 21 days), The Renew ($18,500, 30+ days)

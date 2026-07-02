@@ -1192,7 +1192,8 @@
     .process li { list-style:none; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:8px; padding:20px; color:rgba(255,255,255,.72); }
     .process li::before { counter-increment: step; content: counter(step, decimal-leading-zero); display:block; font-family:'IBM Plex Mono',monospace; color:var(--sage); margin-bottom:8px; }
     .warning { background:var(--danger-bg); border:1px solid rgba(155,53,53,.18); color:var(--danger); border-radius:8px; padding:18px; font-size:14px; }
-    @media(max-width:900px){.metric-row,.fit-grid{grid-template-columns:1fr}.partner-hero{padding:64px 24px}}
+    .therapy-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:var(--shadow-sm)}.therapy-table th,.therapy-table td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:14px}.therapy-table th{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--sage);background:var(--wash)}.therapy-table tr:last-child td{border-bottom:0}.market-context{max-width:920px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:28px;margin:0 0 34px;box-shadow:var(--shadow-sm)}.market-context p{font-size:21px;line-height:1.55;color:var(--navy);margin:0}.market-context strong{color:var(--danger)}
+    @media(max-width:900px){.metric-row,.fit-grid{grid-template-columns:1fr}.partner-hero{padding:64px 24px}.therapy-table{display:block;overflow-x:auto;white-space:nowrap}}
   </style>
 </head>
 <body id="top">
@@ -1207,6 +1208,9 @@
   </header>
   <section class="partner-hero">
     <div class="inner">
+      <div class="market-context">
+        <p><strong>ACA premiums are up 114% in 2026.</strong> Your patients are paying more and getting less. They are asking you about stem cells, EBOO, NAD+ therapy, and plasmapheresis. You cannot provide these domestically at any price. Casanova gives your practice a clinical infrastructure to answer that question — under your brand, with full physician oversight and complete in-country coordination.</p>
+      </div>
       <div class="section-label">White label partnership</div>
       <h1>Offer your patients international access without building the infrastructure yourself.</h1>
       <p class="partner-lede">Casanova operates behind your practice: physician-reviewed intake, Southeast Asia care coordination, emergency infrastructure, return care plans, and longitudinal outcomes intelligence.</p>
@@ -1231,6 +1235,28 @@
         <article class="program-card featured"><div class="program-tier">Casanova handles</div><h3>Ground operation</h3><ul class="program-includes"><li>Physician review and oversight</li><li>Hospital and specialist coordination</li><li>Accommodation, scheduling, daily support</li><li>Emergency registration and coordinator coverage</li></ul></article>
         <article class="program-card"><div class="program-tier">You receive</div><h3>Revenue and intelligence</h3><ul class="program-includes"><li>Referral economics on completed programs</li><li>Quarterly emerging-therapy briefings</li><li>Aggregated outcomes from referred patients</li><li>Founding partner practice recognition</li></ul></article>
       </div>
+    </div>
+  </section>
+
+  <section class="band band-white">
+    <div class="inner">
+      <div class="section-label">Therapy menu</div>
+      <h2>What your patients are already asking about.</h2>
+      <table class="therapy-table">
+        <thead><tr><th>Therapy</th><th>What it does</th><th>US cost</th><th>Bangkok cost</th><th>Program tier</th></tr></thead>
+        <tbody>
+          <tr><td>EBOO</td><td>Ozone blood treatment. Oxygenation, inflammation, immune support.</td><td>$3,000-5,000/session where available</td><td>~$800-1,000</td><td>Restore, Renew</td></tr>
+          <tr><td>NAD+ IV (10-session course)</td><td>Mitochondrial energy, DNA repair, cognitive and physical performance.</td><td>$4,000-12,000</td><td>$1,500-3,000</td><td>Restore, Renew</td></tr>
+          <tr><td>Stem Cell</td><td>Aggressive regenerative response. Placenta and cord-derived.</td><td>Not FDA-approved outside trials</td><td>$8,000-18,000</td><td>Renew</td></tr>
+          <tr><td>Plasmapheresis</td><td>Removes inflammatory markers, heavy metals, senescent cells.</td><td>Not available for longevity</td><td>$2,000-5,000</td><td>Renew</td></tr>
+          <tr><td>Exosomes</td><td>Cell repair signaling for skin, inflammation, and tissue.</td><td>FDA-restricted</td><td>$1,500-4,000</td><td>Restore, Renew</td></tr>
+          <tr><td>Xenon Gas</td><td>Neuroregeneration and nervous system reset.</td><td>Research only</td><td>$500-1,500/session</td><td>Renew</td></tr>
+          <tr><td>NK-Cell Expansion</td><td>Immune upgrade and surveillance support.</td><td>Cancer trials only</td><td>$5,000-12,000</td><td>Renew</td></tr>
+          <tr><td>Peptide Protocols</td><td>Healing, recovery, cognition, and tissue repair.</td><td>Limited via compounding</td><td>$300-1,500/mo</td><td>All tiers</td></tr>
+          <tr><td>Full Longevity Panel</td><td>Epigenetic age, telomere, hormone, microbiome, DEXA.</td><td>$2,000-5,000</td><td>$200-600</td><td>Restore, Renew</td></tr>
+          <tr><td>Daily Thai Massage</td><td>Genuine therapeutic benefit, daily.</td><td>$120-200/session, not covered</td><td>$15-25/session</td><td>All tiers</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
   <section class="band band-wash">
