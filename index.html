@@ -1217,8 +1217,8 @@
           <a class="btn btn-sage" href="partners.html">White-label partnerships</a>
         </div>
         <div class="trust-strip" role="list">
-          <div class="trust-pill" role="listitem"><span class="dot"></span> Bumrungrad & Bangkok Hospital</div>
-          <div class="trust-pill" role="listitem"><span class="dot"></span> RAKxa · Kamalaya · Chiva-Som</div>
+          <div class="trust-pill" role="listitem"><span class="dot"></span> Accredited institution coordination</div>
+          <div class="trust-pill" role="listitem"><span class="dot"></span> Wellness partner access planning</div>
           <div class="trust-pill" role="listitem"><span class="dot"></span> 24/7 in-country coordinator</div>
           <div class="trust-pill" role="listitem"><span class="dot"></span> Not a clinic — a navigator</div>
         </div>
@@ -1264,7 +1264,7 @@
           <p class="program-fee-note">Coordination fee. All-in est. $7,000–$9,000</p>
           <ul class="program-includes">
             <li>Pre-trip physician consult (US-based)</li>
-            <li>2–3 specialist appointments at Bumrungrad or Bangkok Hospital</li>
+            <li>2–3 specialist appointments coordinated with appropriate accredited institutions</li>
             <li>Imaging and lab panels</li>
             <li>10× traditional Thai massage sessions</li>
             <li>Airport transfers, accommodation coordination</li>
@@ -1291,7 +1291,7 @@
             <li>NAD+ IV therapy (5–10 sessions)</li>
             <li>EBOO (Extracorporeal Blood Oxygenation and Ozonation) — complimentary, included in this program</li>
             <li>Exosomes + peptide therapy</li>
-            <li>1 day at RAKxa, Kamalaya, or Chiva-Som</li>
+            <li>1 day with a wellness partner, subject to fit and confirmed availability</li>
             <li>Premium serviced apartment</li>
             <li>Day 7 + Day 14 in-person check-in</li>
             <li>90-day CPP protocol included</li>
@@ -1456,29 +1456,29 @@
         The institutions we route to. Personally vetted.
       </h2>
       <p style="font-size:16px; color:var(--ink-soft); max-width:600px; line-height:1.75;">
-        We work with institutions we have visited, trust, and maintain ongoing relationships with. Nothing is referred speculatively.
+        We coordinate access to leading accredited institutions and wellness partners. Specific placements are confirmed individually after intake, physician review, timing, and institutional availability.
       </p>
 
       <div class="partners-grid">
         <div class="partner-card">
           <div class="partner-country">Thailand · Bangkok</div>
-          <h4>Bumrungrad International Hospital</h4>
-          <p>Global benchmark for specialist care. Cardiology, oncology, orthopaedics, and diagnostics at world-class standards. Casanova's primary clinical partner.</p>
+          <h4>Bangkok specialist pathway</h4>
+          <p>Specialist diagnostics and consultations coordinated with appropriate accredited providers after intake and availability review.</p>
         </div>
         <div class="partner-card">
           <div class="partner-country">Thailand · Bangkok</div>
-          <h4>RAKxa Integrative Wellness</h4>
-          <p>Bangkok's leading integrative medical wellness retreat. Tier 2 and Tier 3 primary retreat partner. Combines functional medicine, Traditional Thai Medicine, and longevity science.</p>
+          <h4>Bangkok wellness pathway</h4>
+          <p>Integrative wellness options considered for fit, timing, and clinical appropriateness before any placement is confirmed.</p>
         </div>
         <div class="partner-card">
           <div class="partner-country">Thailand · Koh Samui</div>
-          <h4>Kamalaya Koh Samui</h4>
-          <p>Award-winning holistic wellness retreat integrating Eastern healing traditions with Western medical science. Tier 2 and Tier 3 optional.</p>
+          <h4>Island recovery pathway</h4>
+          <p>Retreat-style wellness planning for patients who need a slower recovery environment and longer in-country support.</p>
         </div>
         <div class="partner-card">
           <div class="partner-country">Thailand · Hua Hin</div>
-          <h4>Chiva-Som</h4>
-          <p>One of the world's most celebrated destination spas. Personalised health programmes, physiotherapy, and preventive medicine.</p>
+          <h4>Preventive wellness pathway</h4>
+          <p>Personalized health, physiotherapy, and preventive wellness options evaluated case by case.</p>
         </div>
         <div class="partner-card">
           <div class="partner-country">Malaysia · Penang</div>
@@ -1731,7 +1731,7 @@
       <div class="faq-grid">
         <div class="faq-item">
           <h4>Is Casanova a clinic or a medical provider?</h4>
-          <p>No. Casanova is a medical navigation and patient advocacy company. All clinical care is performed by licensed physicians and institutions at our partner hospitals. We consult, suggest, route, and oversee — we do not diagnose, treat, or prescribe.</p>
+          <p>No. Casanova is a medical navigation and patient advocacy company. All clinical care is performed by licensed physicians and accredited institutions. We consult, suggest, route, and oversee — we do not diagnose, treat, or prescribe.</p>
         </div>
         <div class="faq-item">
           <h4>Do I need to travel to use Casanova?</h4>
@@ -1751,7 +1751,7 @@
         </div>
         <div class="faq-item">
           <h4>Is this safe? Who are the doctors?</h4>
-          <p>Bumrungrad International Hospital is rated among the top hospitals in Asia by international accreditation bodies. Our physician oversight partner holds active international clinical trial PI roles. We can share institutional credentials and COA documentation on request.</p>
+          <p>We coordinate with accredited institutions and licensed clinicians, and we confirm the appropriate care path individually after intake. We can share institutional credentials and documentation when a specific route is proposed.</p>
         </div>
         <div class="faq-item">
           <h4>Can I do this on my own without Casanova?</h4>
@@ -1924,12 +1924,12 @@
     let history = [];
     let isOpen  = false;
 
-    const SYSTEM_PROMPT = `You are the Casanova Medicals concierge. Casanova Medicals is a medical navigation and patient advocacy company that helps Americans 40+ access world-class care at partner hospitals and wellness retreats in Thailand, Vietnam, and Malaysia. You are warm, knowledgeable, and non-judgmental.
+    const SYSTEM_PROMPT = `You are the Casanova Medicals concierge. Casanova Medicals is a medical navigation and patient advocacy company that helps Americans 40+ coordinate access to leading accredited institutions and wellness partners in Thailand, Vietnam, and Malaysia. You are warm, knowledgeable, and non-judgmental.
 
 You can answer questions about:
 - The three in-country programs: The Reset ($4,500 coordination fee, 10-14 days), The Restore ($9,500, 21 days), The Renew ($18,500, 30+ days)
 - CPP (Casanova Protocol Program): free intake, clinician review, $249/month supplement subscription (Protocol A AM or Protocol B PM) if approved
-- Partner hospitals: Bumrungrad International, Bangkok Hospital, RAKxa, Kamalaya, Chiva-Som
+- Country access strategy: Thailand, Malaysia, and Vietnam pathways, with specific institutions confirmed individually after intake, physician review, timing, and availability
 - Logistics: travel insurance (SafetyWing/Pacific Cross), accommodation, airport transfers, visa options
 - The intake and review process
 - General questions about medical care in Thailand, Vietnam, and Malaysia
