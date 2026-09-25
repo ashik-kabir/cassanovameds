@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Second Opinion | Casanova Medicals</title>
+<meta name="description" content="A 48-hour, physician-reviewed second opinion before you commit to care abroad. Written report from $299, or add a 20-minute physician call for $499." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+    :root {
+      --navy:    #1B2B3A;
+      --paper:   #F7F4EE;
+      --sage:    #7A9B7E;
+      --amber:   #C2762E;
+      --ink:     #2C3E50;
+      --ink-soft:#4A5568;
+      --muted:   #718096;
+      --line:    #E2DDD7;
+      --panel:   #FFFFFF;
+      --wash:    #EEF5EF;
+      --danger:  #9B3535;
+      --danger-bg:#FDF0F0;
+      --shadow-sm: 0 2px 8px rgba(27,43,58,0.08);
+      --shadow:    0 12px 40px rgba(27,43,58,0.12);
+      --shadow-lg: 0 24px 60px rgba(27,43,58,0.16);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; }
+    h1, h2, h3, h4, h5 { font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; line-height: 1.12; margin-top: 0; color: var(--navy); }
+    p { margin-top: 0; }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; }
+    .mono { font-family: 'IBM Plex Mono', monospace; }
+
+    .topbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; min-height: 68px; padding: 0 48px; background: rgba(247, 244, 238, 0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(226, 221, 215, 0.8); }
+    .brand { display: inline-flex; flex-direction: column; gap: 2px; text-decoration: none; }
+    .brand strong { font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; font-weight: 600; color: var(--navy); line-height: 1; }
+    .brand em { font-style: normal; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); font-family: 'IBM Plex Mono', monospace; }
+    .nav { display: flex; align-items: center; gap: 26px; }
+    .nav a { color: var(--ink-soft); font-size: 14px; font-weight: 500; text-decoration: none; transition: color 0.18s; }
+    .nav a:hover { color: var(--navy); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 22px; border: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+    .btn-primary { background: var(--navy); color: #fff; }
+    .btn-primary:hover { background: #253c4e; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+    .btn-outline:hover { background: var(--navy); color: #fff; }
+    .btn-sage { background: var(--sage); color: #fff; }
+    .btn-sage:hover { background: #6a8a6e; transform: translateY(-1px); }
+    .btn-amber { background: var(--amber); color: #fff; }
+    .btn-amber:hover { background: #b06a27; transform: translateY(-1px); }
+    .btn-block { width: 100%; }
+
+    .inner { width: min(1200px, 100%); margin: 0 auto; }
+    .band { padding: 96px 48px; }
+    .band-sm { padding: 64px 48px; }
+    .band-white { background: #fff; }
+    .band-navy  { background: var(--navy); color: #fff; }
+    .band-wash  { background: var(--wash); }
+    .band-white h2, .band-wash h2 { color: var(--navy); }
+    .band-navy h2, .band-navy h3 { color: #fff; }
+    .band-navy p { color: rgba(255,255,255,0.75); }
+
+    .section-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); }
+    .section-label::before { content: ''; display: block; width: 28px; height: 1.5px; background: var(--amber); }
+
+    .hero { position: relative; padding: 100px 48px 72px; }
+    .hero-inner { position: relative; width: min(1200px, 100%); margin: 0 auto; }
+    .hero-copy { max-width: 720px; }
+    h1 { font-size: clamp(38px, 5.2vw, 62px); margin-bottom: 22px; font-weight: 700; letter-spacing: -0.02em; }
+    .hero-lede { font-size: 19px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 32px; max-width: 600px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+    .trust-strip { display: flex; flex-wrap: wrap; gap: 0; }
+    .trust-pill { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.75); font-size: 13px; font-weight: 500; color: var(--ink-soft); margin-right: -1px; margin-bottom: -1px; }
+    .trust-pill:first-child { border-radius: 6px 0 0 6px; }
+    .trust-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); flex-shrink: 0; }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 48px; }
+    .price-card { display: flex; flex-direction: column; padding: 36px 32px; border: 1px solid var(--line); border-radius: 10px; background: #fff; box-shadow: var(--shadow-sm); }
+    .price-card.featured { border-color: var(--sage); box-shadow: 0 0 0 2px var(--sage), var(--shadow); }
+    .price-tier { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-bottom: 12px; }
+    .price-card h3 { font-size: 24px; margin-bottom: 8px; }
+    .price-fee { font-family: 'IBM Plex Mono', monospace; font-size: 40px; font-weight: 600; color: var(--navy); margin-bottom: 20px; }
+    .price-includes { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 10px; }
+    .price-includes li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+    .price-includes li::before { content: ''; display: block; width: 6px; height: 6px; min-width: 6px; border-radius: 50%; background: var(--amber); margin-top: 7px; }
+
+    .report-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; margin-top: 40px; }
+    .report-card { padding: 24px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+    .report-card .num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: var(--sage); letter-spacing: 2px; margin-bottom: 10px; }
+    .report-card h4 { font-size: 17px; margin-bottom: 6px; }
+    .report-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 0; }
+
+    .steps-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+    .step { padding: 28px; border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; background: rgba(255,255,255,0.05); }
+    .step-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 2px; color: var(--sage); margin-bottom: 20px; }
+    .step h3 { font-size: 17px; color: #fff; margin-bottom: 10px; }
+    .step p { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.65); margin-bottom: 0; }
+
+    .not-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-top: 28px; }
+    .not-item { display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; border-radius: 8px; background: var(--danger-bg); border: 1px solid rgba(155,53,53,0.18); font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+    .not-item .x { color: var(--danger); font-weight: 700; flex-shrink: 0; }
+
+    .callout { padding: 24px 28px; border-radius: 10px; background: var(--wash); border: 1px solid rgba(122,155,126,0.3); font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-top: 32px; }
+    .callout strong { color: var(--navy); }
+
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+    .faq-item { padding: 24px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+    .faq-item h4 { font-size: 16px; margin-bottom: 10px; }
+    .faq-item p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 0; }
+
+    .disclaimer-band { background: var(--navy); padding: 24px 48px; }
+    .disclaimer-inner { width: min(1200px, 100%); margin: 0 auto; }
+    .disclaimer-inner p { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 0; font-family: 'IBM Plex Mono', monospace; }
+
+    footer { background: #0f1e2b; padding: 56px 48px 32px; }
+    .footer-grid { width: min(1200px, 100%); margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand strong { display: block; font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 10px; }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 16px; }
+    .footer-col h5 { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.65); text-decoration: none; margin-bottom: 10px; transition: color 0.18s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { width: min(1200px, 100%); margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom span { font-size: 13px; color: rgba(255,255,255,0.35); }
+
+    @media (max-width: 1024px) {
+      .topbar { padding: 0 28px; }
+      .nav a:not(.btn-primary) { display: none; }
+      .band, .band-sm { padding-left: 28px; padding-right: 28px; }
+      .disclaimer-band { padding-left: 28px; padding-right: 28px; }
+      .hero { padding-left: 28px; padding-right: 28px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .pricing-grid, .report-grid, .steps-grid, .not-grid, .faq-grid { grid-template-columns: 1fr; }
+      .trust-strip { flex-direction: column; }
+      .trust-pill { border-radius: 6px !important; margin-right: 0; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      footer { padding: 40px 24px 24px; }
+    }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <strong>Casanova Medicals</strong>
+      <em>Medical Navigation · SE Asia</em>
+    </a>
+    <nav class="nav">
+      <a href="index.html#programs">Where This Can Lead</a>
+      <a href="brief.html">Brief</a>
+      <a href="countries.html">Countries</a>
+      <a href="index.html#about">About</a>
+      <a class="btn btn-primary" href="#pricing">Get my second opinion</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="section-label">Second Opinion · 48-Hour Physician Review</p>
+        <h1>Before you commit thousands, get an honest, physician-reviewed view.</h1>
+        <p class="hero-lede">
+          Send your situation and your records. A physician who isn't trying to sell you anything reviews your case and tells you, plainly, what's worth investigating abroad — and what isn't.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pricing">See pricing &amp; get started</a>
+          <a class="btn btn-outline" href="#report">What you receive</a>
+        </div>
+        <div class="trust-strip" role="list">
+          <div class="trust-pill" role="listitem"><span class="dot"></span> Physician-reviewed, not algorithmic</div>
+          <div class="trust-pill" role="listitem"><span class="dot"></span> 48-hour turnaround on complete submissions</div>
+          <div class="trust-pill" role="listitem"><span class="dot"></span> No diagnosis, no pressure, no sales script</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-white" id="pricing">
+    <div class="inner">
+      <p class="section-label">Choose Your Tier</p>
+      <h2 style="font-size:clamp(30px,4vw,44px);">Two ways to get your opinion.</h2>
+      <p style="max-width:640px; color:var(--ink-soft); font-size:16px;">Payment happens before your records are reviewed — this is what starts your 48-hour clock, and it's the only thing that does.</p>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-tier">Written Second Opinion</div>
+          <h3>Written Report</h3>
+          <div class="price-fee">$299</div>
+          <ul class="price-includes">
+            <li>Full written report, six sections (case overview through next steps)</li>
+            <li>48-hour turnaround after your submission is complete</li>
+            <li>Delivered by secure email</li>
+          </ul>
+          <a class="btn btn-outline btn-block" href="#pending-stripe-written" data-tier="written">Get my written opinion — $299</a>
+        </div>
+        <div class="price-card featured">
+          <div class="price-tier">Most Thorough</div>
+          <h3>Written Opinion + Call</h3>
+          <div class="price-fee">$499</div>
+          <ul class="price-includes">
+            <li>Everything in the written report</li>
+            <li>A 20-minute call with the reviewing physician</li>
+            <li>Room to ask follow-up questions directly</li>
+          </ul>
+          <a class="btn btn-primary btn-block" href="#pending-stripe-written-call" data-tier="written_call">Get my opinion + call — $499</a>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Not for every situation:</strong> this product does not process cases that are primarily cancer-related. If your submission is primarily about a cancer diagnosis, we'll decline and refer you directly to legitimate oncology second-opinion programs rather than review it here — that's a deliberate scope limit, not an oversight.
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-wash" id="report">
+    <div class="inner">
+      <p class="section-label">What You Receive</p>
+      <h2 style="font-size:clamp(30px,4vw,44px);">A structured, six-part report.</h2>
+      <div class="report-grid">
+        <div class="report-card"><div class="num">01</div><h4>Case Overview</h4><p>A neutral, one-paragraph summary of what you submitted, so you know your case was actually read.</p></div>
+        <div class="report-card"><div class="num">02</div><h4>Physician Assessment</h4><p>What the reviewing physician believes actually needs clarification — and what doesn't.</p></div>
+        <div class="report-card"><div class="num">03</div><h4>Pathway Options</h4><p>Reset, Restore, or Renew — named only when the physician believes it's genuinely relevant to your case.</p></div>
+        <div class="report-card"><div class="num">04</div><h4>Institution Options</h4><p>Candidate institutions, clearly labeled as candidates for your own further verification — never presented as a confirmed relationship.</p></div>
+        <div class="report-card"><div class="num">05</div><h4>Questions to Ask</h4><p>The practical questions worth taking to any provider you're evaluating, based on your specific case.</p></div>
+        <div class="report-card"><div class="num">06</div><h4>Next Steps, No Pressure</h4><p>Explicit next-step options. If nothing here is worth pursuing, the opinion will say so — that's a successful outcome, not a failed one.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-navy">
+    <div class="inner">
+      <p class="section-label" style="color:var(--sage);">How It Works</p>
+      <h2 style="font-size:clamp(30px,4vw,44px);">Four steps, in this order.</h2>
+      <div class="steps-grid">
+        <div class="step"><div class="step-num">STEP 1</div><h3>Choose &amp; pay</h3><p>Pick written ($299) or written + call ($499). Payment happens before anything else — that's what starts the clock.</p></div>
+        <div class="step"><div class="step-num">STEP 2</div><h3>Submit your case</h3><p>Answer the intake questionnaire and upload your records — labs, imaging, notes, whatever you have.</p></div>
+        <div class="step"><div class="step-num">STEP 3</div><h3>Physician review</h3><p>A physician reviews your complete submission. The 48-hour clock starts only once it's complete.</p></div>
+        <div class="step"><div class="step-num">STEP 4</div><h3>Receive your opinion</h3><p>Your report arrives by secure email. On the $499 tier, your call is scheduled from there.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-white">
+    <div class="inner">
+      <p class="section-label">What This Is Not</p>
+      <h2 style="font-size:clamp(30px,4vw,44px);">Worth being direct about.</h2>
+      <div class="not-grid">
+        <div class="not-item"><span class="x">✕</span> This is not a medical diagnosis.</div>
+        <div class="not-item"><span class="x">✕</span> This is not treatment advice or a prescription.</div>
+        <div class="not-item"><span class="x">✕</span> This is not a guarantee you'll be accepted by any institution named.</div>
+        <div class="not-item"><span class="x">✕</span> This is not accelerated or emergency clinical access.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-wash" id="faq">
+    <div class="inner">
+      <p class="section-label">FAQ</p>
+      <h2 style="font-size:clamp(30px,4vw,44px);">Common questions.</h2>
+      <div class="faq-grid">
+        <div class="faq-item"><h4>How fast is it?</h4><p>48 hours after your submission is complete — questionnaire, records, and payment all received.</p></div>
+        <div class="faq-item"><h4>Do I need a formal diagnosis?</h4><p>No.</p></div>
+        <div class="faq-item"><h4>Will you recommend a specific hospital?</h4><p>Only as a candidate institution when relevant, clearly labeled as unverified by any partnership.</p></div>
+        <div class="faq-item"><h4>Is this a medical diagnosis or treatment advice?</h4><p>No.</p></div>
+        <div class="faq-item"><h4>What if international care doesn't appear justified for me?</h4><p>The opinion will say so plainly. That's a successful outcome of this product, not a failure of it.</p></div>
+        <div class="faq-item"><h4>What happens to my records?</h4><p>They're used only to form your opinion and for internal process improvement, under controlled access. We do not sell your data.</p></div>
+        <div class="faq-item"><h4>What if my submission is incomplete?</h4><p>We'll contact you for what's missing. The 48-hour clock starts only once your submission is complete.</p></div>
+        <div class="faq-item"><h4>What's your refund policy?</h4><p>Full refund if the physician can't form any useful view due to insufficient information, even after reasonable follow-up.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="disclaimer-band">
+    <div class="disclaimer-inner">
+      <p>CASANOVA MEDICALS IS NOT A HOSPITAL, CLINIC, OR LICENSED MEDICAL PROVIDER. THE SECOND OPINION PRODUCT PROVIDES PHYSICIAN-REVIEWED CARE NAVIGATION ONLY — NOT A DIAGNOSIS, NOT TREATMENT, AND NOT A GUARANTEE OF OUTCOME OR INSTITUTIONAL ACCEPTANCE. THIS PRODUCT DOES NOT REVIEW PRIMARILY CANCER-RELATED SUBMISSIONS. ALWAYS CONSULT YOUR TREATING PHYSICIANS BEFORE MAKING CARE DECISIONS.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <strong>Casanova Medicals</strong>
+        <p>Medical navigation and patient advocacy for Americans 40+ seeking world-class care in Southeast Asia.</p>
+        <a class="btn btn-outline" style="border-color:rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); width:fit-content;" href="#pricing">Get my second opinion</a>
+      </div>
+      <div class="footer-col">
+        <h5>Second Opinion</h5>
+        <a href="#pricing">Written report — $299</a>
+        <a href="#pricing">Written + call — $499</a>
+        <a href="#report">What you receive</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h5>Where This Can Lead</h5>
+        <a href="index.html#programs">The Reset / Restore / Renew</a>
+        <a href="index.html#protocol">CPP Remote — $249/mo</a>
+        <a href="countries.html">Countries</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:hello@casanovamed.com">hello@casanovamed.com</a>
+        <a href="index.html">Back to Casanova Medicals</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Casanova Medicals. Not a medical provider. Care navigation only.</span>
+      <span class="mono" style="font-size:11px; letter-spacing:1px;">CONSULT · SUGGEST · ROUTE · OVERSEE · LOVE</span>
+    </div>
+  </footer>
+
+  <script>
+    // TODO(payment): replace these two hrefs with the real Stripe Payment Link URLs
+    // once they're created in the Casanova Stripe account, then remove this script block.
+    // written  -> $299 one-time payment link
+    // written_call -> $499 one-time payment link
+    // Each Payment Link's "after payment" confirmation page should point to:
+    //   https://www.casanovamed.com/second-opinion-intake.html?tier=written
+    //   https://www.casanovamed.com/second-opinion-intake.html?tier=written_call
+    document.querySelectorAll('[data-tier]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        if (el.getAttribute('href').startsWith('#pending-stripe')) {
+          e.preventDefault();
+          alert('Checkout isn\'t wired up yet — this button will go to a real Stripe payment link shortly.');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

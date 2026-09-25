@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Submit Your Case | Second Opinion · Casanova Medicals</title>
+<meta name="description" content="Submit your intake questionnaire and records for your Casanova Medicals Second Opinion. Payment confirmed — this starts your 48-hour physician review." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+    :root {
+      --navy: #1B2B3A; --paper: #F7F4EE; --sage: #7A9B7E; --amber: #C2762E;
+      --ink: #2C3E50; --ink-soft: #4A5568; --muted: #718096; --line: #E2DDD7;
+      --wash: #EEF5EF; --danger: #9B3535; --danger-bg: #FDF0F0;
+      --shadow: 0 12px 40px rgba(27,43,58,0.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; color: var(--ink); background: var(--paper); line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; margin-top: 0; color: var(--navy); }
+    a { color: inherit; }
+    button, input, select, textarea { font: inherit; }
+
+    .topbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; min-height: 68px; padding: 0 48px; background: rgba(247,244,238,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(226,221,215,0.8); }
+    .brand { display: inline-flex; flex-direction: column; gap: 2px; text-decoration: none; }
+    .brand strong { font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; font-weight: 600; color: var(--navy); }
+    .brand em { font-style: normal; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); font-family: 'IBM Plex Mono', monospace; }
+
+    .wrap { width: min(760px, 100%); margin: 0 auto; padding: 56px 24px 96px; }
+    .status-banner { display: flex; align-items: center; gap: 12px; padding: 16px 20px; border-radius: 8px; background: var(--wash); border: 1px solid rgba(122,155,126,0.35); font-size: 14px; color: var(--ink-soft); margin-bottom: 32px; }
+    .status-banner strong { color: var(--navy); }
+    .status-banner.warn { background: var(--danger-bg); border-color: rgba(155,53,53,0.25); }
+
+    .section-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); }
+    .section-label::before { content: ''; display: block; width: 24px; height: 1.5px; background: var(--amber); }
+
+    form { display: grid; gap: 22px; margin-top: 28px; }
+    fieldset { border: 1px solid var(--line); border-radius: 10px; padding: 24px; background: #fff; display: grid; gap: 16px; }
+    legend { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); padding: 0 8px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label { display: grid; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+      width: 100%; padding: 11px 13px; border: 1.5px solid var(--line); border-radius: 6px;
+      color: var(--ink); background: #fff; outline: none; font-size: 15px; min-height: 46px;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--sage); box-shadow: 0 0 0 3px rgba(122,155,126,0.15); }
+    textarea { min-height: 110px; resize: vertical; }
+    input[type="file"] { border: 1.5px dashed var(--line); border-radius: 6px; padding: 14px; background: var(--wash); min-height: 0; }
+    .hint { font-size: 12px; color: var(--muted); font-weight: 400; }
+    .checkbox-group { display: grid; gap: 8px; }
+    .checkbox-row { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 400; color: var(--ink-soft); }
+    .checkbox-row input { width: 16px; height: 16px; min-height: 0; margin-top: 3px; accent-color: var(--sage); }
+
+    .consent-box { padding: 18px 20px; border-radius: 8px; background: var(--wash); border: 1px solid var(--line); font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+    .consent-box strong { color: var(--ink-soft); }
+    .consent-row { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: start; margin-top: 14px; }
+    .consent-row input { width: 18px; height: 18px; min-height: 0; margin-top: 2px; accent-color: var(--sage); }
+    .consent-row span { font-size: 13px; color: var(--ink-soft); line-height: 1.6; font-weight: 400; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 24px; border: none; border-radius: 6px; font-weight: 600; font-size: 15px; cursor: pointer; text-decoration: none; width: 100%; background: var(--navy); color: #fff; }
+    .btn:hover { background: #253c4e; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .confirmation { display: none; padding: 28px; border-radius: 10px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); text-align: center; }
+    .confirmation.visible { display: block; }
+    .confirmation h2 { font-size: 24px; margin-bottom: 10px; }
+    .confirmation p { color: var(--ink-soft); font-size: 15px; line-height: 1.7; }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <strong>Casanova Medicals</strong>
+      <em>Second Opinion Intake</em>
+    </a>
+  </header>
+
+  <div class="wrap">
+
+    <div id="tier-banner" class="status-banner">
+      <span>⏳</span>
+      <span id="tier-banner-text">Checking your payment confirmation…</span>
+    </div>
+
+    <p class="section-label">Second Opinion · Submission</p>
+    <h1 style="font-size: clamp(28px, 4vw, 38px);">Submit your case.</h1>
+    <p style="color: var(--ink-soft); font-size: 15px; max-width: 560px;">
+      This is the only step left. Once this is complete, your 48-hour physician review clock starts.
+      Everything you submit is used only to form your opinion and for internal process improvement — never sold.
+    </p>
+
+    <form id="second-opinion-form" novalidate>
+
+      <fieldset>
+        <legend>A · Basic Information</legend>
+        <div class="field-row">
+          <label>Full name <input type="text" name="name" required autocomplete="name" /></label>
+          <label>Email address <input type="email" name="email" required autocomplete="email" /></label>
+        </div>
+        <div class="field-row">
+          <label>Country of residence <input type="text" name="country" required /></label>
+          <label>Age range
+            <select name="age_range" required>
+              <option value="">Select one</option>
+              <option>Under 40</option>
+              <option>40–54</option>
+              <option>55–64</option>
+              <option>65–74</option>
+              <option>75+</option>
+            </select>
+          </label>
+        </div>
+        <div class="field-row">
+          <label>Preferred contact method
+            <select name="contact_method" required>
+              <option value="">Select one</option>
+              <option>Email</option>
+              <option>Phone</option>
+            </select>
+          </label>
+          <label>Phone <span class="hint">(optional)</span> <input type="tel" name="phone" /></label>
+        </div>
+        <label>Preferred language <input type="text" name="language" placeholder="English" /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>B · What Are You Looking For?</legend>
+        <label>Select the closest fit
+          <select name="looking_for" required>
+            <option value="">Select one</option>
+            <option>General health optimization</option>
+            <option>Recovery / rehabilitation</option>
+            <option>Chronic condition support</option>
+            <option>Preventive / longevity care</option>
+            <option>Regenerative / advanced therapies</option>
+            <option>Diagnostic clarification</option>
+            <option>Second opinion on an existing recommendation</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>In your own words, what are you hoping to accomplish? <textarea name="goal_freetext" required></textarea></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>C · Current Situation</legend>
+        <label>What you've been told so far, what you're considering, what concerns you most, and what decision you're trying to make
+          <textarea name="current_situation" required></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>D · Medical Records</legend>
+        <label>Upload records <span class="hint">PDF, JPG, or PNG. Labs, imaging, physician notes, pathology, prior treatment summaries, medication list, or other.</span>
+          <input type="file" name="records" multiple accept=".pdf,.jpg,.jpeg,.png" />
+        </label>
+        <p class="hint">If uploading isn't working for you, you can email records securely to <strong>checks@casanovamed.com</strong> and reference the name and email you used here.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>E · Timeline</legend>
+        <label>
+          <select name="timeline" required>
+            <option value="">Select one</option>
+            <option>Just researching</option>
+            <option>1–3 months</option>
+            <option>3–6 months</option>
+            <option>6–12 months</option>
+            <option>Time-sensitive</option>
+          </select>
+        </label>
+        <p class="hint">This does not accelerate clinical access — it only helps us understand context.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>F · Approximate Investment Range</legend>
+        <label><span class="hint">Soft, non-qualifying — helps us calibrate options, nothing more.</span>
+          <select name="investment_range">
+            <option value="">Select one</option>
+            <option>Under $5,000</option>
+            <option>$5,000–$15,000</option>
+            <option>$15,000–$30,000</option>
+            <option>$30,000+</option>
+            <option>Unsure</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>G · Destination Preferences <span class="hint">(optional)</span></legend>
+        <label><textarea name="destination_preferences" placeholder="No forced selection — leave blank if you have no preference."></textarea></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>H · Consent</legend>
+        <div class="consent-box">
+          <strong>Draft consent language — pending legal review before this goes live.</strong>
+          By submitting, you understand: (1) this is a physician-reviewed care-navigation opinion, not a medical diagnosis or treatment recommendation; (2) it does not guarantee outcomes or acceptance by any institution named; (3) submissions that are primarily cancer-related will be declined and redirected to appropriate oncology second-opinion resources rather than reviewed; (4) your records and answers are used only to form this opinion and for internal process improvement, and are not sold to third parties; (5) your 48-hour review window begins only once your submission — questionnaire, records, and payment — is complete.
+        </div>
+        <div class="consent-row">
+          <input type="checkbox" id="consent" name="consent" required />
+          <span><label for="consent" style="font-weight:400;">I have read and agree to the above, and I confirm my situation is not primarily cancer-related.</label></span>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="newsletter_optin" name="newsletter_optin" />
+          <label for="newsletter_optin">Also send me The Brief, Casanova's weekly newsletter. No spam.</label>
+        </div>
+      </fieldset>
+
+      <button class="btn" type="submit" id="submit-btn">Submit my case</button>
+    </form>
+
+    <div class="confirmation" id="confirmation">
+      <h2>Your case has been submitted.</h2>
+      <p>A physician will review your complete submission. If everything you've provided is sufficient, your report will arrive by email within 48 hours. If anything is missing, we'll reach out — the clock starts once your submission is complete.</p>
+    </div>
+
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const tier = params.get('tier');
+    const tierLabel = { written: 'Written Second Opinion — $299', written_call: 'Written Opinion + Call — $499' }[tier];
+    const banner = document.getElementById('tier-banner');
+    const bannerText = document.getElementById('tier-banner-text');
+
+    if (tierLabel) {
+      banner.innerHTML = `<span>✓</span><span>Payment confirmed — <strong>${tierLabel}</strong>. Complete the form below to start your 48-hour review.</span>`;
+    } else {
+      banner.classList.add('warn');
+      banner.innerHTML = `<span>⚠</span><span>We couldn't confirm a completed payment for this session. If you already paid, submit anyway and reference your email — we'll match it up. If you haven't paid yet, <a href="second-opinion.html#pricing" style="text-decoration:underline;">go back and choose a tier</a>.</span>`;
+    }
+
+    // ── Supabase (same project as the main site's intake form) ──
+    const SUPABASE_URL    = 'https://xwlpenfqnjspcwollygd.supabase.co';
+    const SUPABASE_ANON   = 'sb_publishable_iRoowWiDi4UG7kB2fRwZvw_nhWDTnw2';
+    const SUPABASE_ENABLED = !SUPABASE_URL.includes('REPLACE');
+
+    const form = document.getElementById('second-opinion-form');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      const submission = {
+        ...data,
+        tier: tier || 'unconfirmed',
+        newsletter_optin: !!document.getElementById('newsletter_optin').checked,
+        submitted_at: new Date().toISOString(),
+      };
+      delete submission.records; // file input value isn't useful in the JSON payload
+
+      // Always persist locally as a fallback
+      const existing = JSON.parse(localStorage.getItem('casanova_second_opinion_intakes') || '[]');
+      existing.push(submission);
+      localStorage.setItem('casanova_second_opinion_intakes', JSON.stringify(existing));
+
+      if (SUPABASE_ENABLED) {
+        try {
+          await fetch(`${SUPABASE_URL}/rest/v1/second_opinion_intakes`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': SUPABASE_ANON,
+              'Authorization': `Bearer ${SUPABASE_ANON}`,
+              'Prefer': 'return=minimal',
+            },
+            body: JSON.stringify({
+              tier: submission.tier,
+              name: submission.name,
+              email: submission.email,
+              country: submission.country,
+              age_range: submission.age_range,
+              contact_method: submission.contact_method,
+              phone: submission.phone || null,
+              language: submission.language || null,
+              looking_for: submission.looking_for,
+              goal_freetext: submission.goal_freetext,
+              current_situation: submission.current_situation,
+              timeline: submission.timeline,
+              investment_range: submission.investment_range || null,
+              destination_preferences: submission.destination_preferences || null,
+              newsletter_optin: submission.newsletter_optin,
+              clinician_status: 'pending_review',
+            }),
+          });
+        } catch (err) {
+          console.warn('Supabase submission failed — saved locally', err);
+        }
+      }
+
+      // NOTE(records upload): file records are not yet uploaded to storage in this
+      // version — see the accompanying build note. Customers are told to email
+      // records to checks@casanovamed.com as a fallback until Supabase Storage
+      // (or equivalent) is wired up for direct upload.
+
+      form.style.display = 'none';
+      document.getElementById('confirmation').classList.add('visible');
+    });
+  </script>
+
+</body>
+</html>
