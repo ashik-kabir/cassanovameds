@@ -195,7 +195,7 @@
             <li>48-hour turnaround after your submission is complete</li>
             <li>Delivered by secure email</li>
           </ul>
-          <a class="btn btn-outline btn-block" href="#pending-stripe-written" data-tier="written">Get my written opinion — $299</a>
+          <a class="btn btn-outline btn-block" href="https://buy.stripe.com/dRm14mfSBcomdJM7jja7C04">Get my written opinion — $299</a>
         </div>
         <div class="price-card featured">
           <div class="price-tier">Most Thorough</div>
@@ -206,7 +206,7 @@
             <li>A 20-minute call with the reviewing physician</li>
             <li>Room to ask follow-up questions directly</li>
           </ul>
-          <a class="btn btn-primary btn-block" href="#pending-stripe-written-call" data-tier="written_call">Get my opinion + call — $499</a>
+          <a class="btn btn-primary btn-block" href="https://buy.stripe.com/28EcN435P886fRUcDDa7C05">Get my opinion + call — $499</a>
         </div>
       </div>
 
@@ -314,23 +314,6 @@
     </div>
   </footer>
 
-  <script>
-    // TODO(payment): replace these two hrefs with the real Stripe Payment Link URLs
-    // once they're created in the Casanova Stripe account, then remove this script block.
-    // written  -> $299 one-time payment link
-    // written_call -> $499 one-time payment link
-    // Each Payment Link's "after payment" confirmation page should point to:
-    //   https://www.casanovamed.com/second-opinion-intake.html?tier=written
-    //   https://www.casanovamed.com/second-opinion-intake.html?tier=written_call
-    document.querySelectorAll('[data-tier]').forEach((el) => {
-      el.addEventListener('click', (e) => {
-        if (el.getAttribute('href').startsWith('#pending-stripe')) {
-          e.preventDefault();
-          alert('Checkout isn\'t wired up yet — this button will go to a real Stripe payment link shortly.');
-        }
-      });
-    });
-  </script>
 
 </body>
 </html>
