@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="robots" content="noindex,nofollow" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Submit Your Case | Second Opinion · Casanova Med</title>
 <meta name="description" content="Submit your intake questionnaire and records for your Casanova Med Second Opinion. Payment confirmed — this starts your 48-hour physician review." />
-<meta name="robots" content="noindex" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -36,6 +36,7 @@
     .section-label::before { content: ''; display: block; width: 24px; height: 1.5px; background: var(--amber); }
 
     form { display: grid; gap: 22px; margin-top: 28px; }
+    form[hidden] { display: none !important; }
     fieldset { border: 1px solid var(--line); border-radius: 10px; padding: 24px; background: #fff; display: grid; gap: 16px; }
     legend { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); padding: 0 8px; }
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -196,7 +197,7 @@
       <fieldset>
         <legend>H · Consent</legend>
         <div class="consent-box">
-          <strong>Draft consent language — pending legal review before this goes live.</strong>
+          <strong>Consent acknowledgement.</strong>
           By submitting, you understand: (1) this is a physician-reviewed care-navigation opinion, not a medical diagnosis or treatment recommendation; (2) it does not guarantee outcomes or acceptance by any institution named; (3) submissions that are primarily cancer-related will be declined and redirected to appropriate oncology second-opinion resources rather than reviewed; (4) your records and answers are used only to form this opinion and for internal process improvement, and are not sold to third parties; (5) your 48-hour review window begins only once your submission — questionnaire, records, and payment — is complete.
         </div>
         <div class="consent-row">
@@ -222,15 +223,17 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const tier = params.get('tier');
+    const checkoutSessionId = params.get('session_id');
     const tierLabel = { written: 'Written Second Opinion — $299', written_call: 'Written Opinion + Call — $499' }[tier];
     const banner = document.getElementById('tier-banner');
     const bannerText = document.getElementById('tier-banner-text');
 
-    if (tierLabel) {
-      banner.innerHTML = `<span>✓</span><span>Payment confirmed — <strong>${tierLabel}</strong>. Complete the form below to start your 48-hour review.</span>`;
+    if (tierLabel && checkoutSessionId) {
+      banner.innerHTML = `<span>✓</span><span>Payment reference received — <strong>${tierLabel}</strong>. Complete the form below to submit your case for payment matching and review.</span>`;
     } else {
       banner.classList.add('warn');
-      banner.innerHTML = `<span>⚠</span><span>We couldn't confirm a completed payment for this session. If you already paid, submit anyway and reference your email — we'll match it up. If you haven't paid yet, <a href="second-opinion.html#pricing" style="text-decoration:underline;">go back and choose a tier</a>.</span>`;
+      banner.innerHTML = `<span>⚠</span><span>A verified checkout reference is required before medical information can be submitted. If you already paid, use the secure link from your payment confirmation or contact <a href="mailto:sonny@casanovamed.com" style="text-decoration:underline;">sonny@casanovamed.com</a>. Otherwise, <a href="second-opinion.html#pricing" style="text-decoration:underline;">return to pricing</a>.</span>`;
+      document.getElementById('second-opinion-form').hidden = true;
     }
 
     // ── Supabase (same project as the main site's intake form) ──
@@ -249,20 +252,22 @@
       const data = Object.fromEntries(new FormData(form).entries());
       const submission = {
         ...data,
-        tier: tier || 'unconfirmed',
+        tier,
+        checkout_session_id: checkoutSessionId,
         newsletter_optin: !!document.getElementById('newsletter_optin').checked,
         submitted_at: new Date().toISOString(),
       };
       delete submission.records; // file input value isn't useful in the JSON payload
 
-      // Always persist locally as a fallback
-      const existing = JSON.parse(localStorage.getItem('casanova_second_opinion_intakes') || '[]');
-      existing.push(submission);
-      localStorage.setItem('casanova_second_opinion_intakes', JSON.stringify(existing));
+      if (!SUPABASE_ENABLED || !checkoutSessionId) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit my case';
+        alert('Secure intake is temporarily unavailable. No information was submitted.');
+        return;
+      }
 
-      if (SUPABASE_ENABLED) {
-        try {
-          await fetch(`${SUPABASE_URL}/rest/v1/second_opinion_intakes`, {
+      try {
+          const response = await fetch(`${SUPABASE_URL}/rest/v1/second_opinion_intakes`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -272,6 +277,7 @@
             },
             body: JSON.stringify({
               tier: submission.tier,
+              checkout_session_id: submission.checkout_session_id,
               name: submission.name,
               email: submission.email,
               country: submission.country,
@@ -289,9 +295,13 @@
               clinician_status: 'pending_review',
             }),
           });
-        } catch (err) {
-          console.warn('Supabase submission failed — saved locally', err);
-        }
+          if (!response.ok) throw new Error(`Secure intake returned ${response.status}`);
+      } catch (err) {
+          console.error('Secure intake failed', err);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit my case';
+          alert('Your information was not submitted. Please try again or contact sonny@casanovamed.com.');
+          return;
       }
 
       // NOTE(records upload): file records are not yet uploaded to storage in this
